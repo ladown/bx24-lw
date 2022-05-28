@@ -1,0 +1,112 @@
+.callback {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20rem;
+	display: none;
+	opacity: 0;
+	z-index: 100;
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(19, 20, 27, 0.5);
+		z-index: 1;
+	}
+
+	&__wrap {
+		width: 100%;
+		max-width: 405rem;
+		position: relative;
+		background-color: #fff;
+		height: auto;
+		margin: auto;
+		z-index: 2;
+		padding: 32rem;
+		border-radius: 24rem;
+
+		@include to(580px) {
+			padding: 30rem 20rem;
+		}
+	}
+
+	&__close {
+		display: flex;
+		position: absolute;
+		top: -24rem;
+		right: -24rem;
+		width: 24rem;
+		stroke: #fff;
+		stroke-width: 2;
+		stroke-linecap: round;
+		transition: stroke 0.3s linear;
+
+		@include to(580px) {
+			top: -34rem;
+			right: 0rem;
+		}
+
+		&:hover {
+			stroke: $green;
+			transition: stroke 0.3s linear;
+		}
+
+		svg {
+			pointer-events: none;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 28rem;
+		line-height: 1;
+		text-align: center;
+
+		@include to(980px) {
+			font-size: 24rem;
+		}
+
+		@include to(580px) {
+			font-size: 20rem;
+		}
+	}
+
+	&__form {
+		margin-top: 32rem;
+
+		@include to(980px) {
+			margin-top: 24rem;
+		}
+	}
+
+	.label {
+		&:not(:last-child) {
+			margin-bottom: 24rem;
+
+			@include to(580px) {
+				margin-bottom: 16rem;
+			}
+		}
+	}
+
+	.checkbox {
+		margin-top: 16rem;
+
+		@include to(580px) {
+			margin-top: 10rem;
+		}
+	}
+
+	&__button {
+		margin: 32rem auto 0 auto;
+
+		@include to(980px) {
+			margin-top: 24rem;
+		}
+	}
+}

@@ -1,0 +1,29 @@
+.h1,
+.content h1 {
+	font-size: 68rem;
+	line-height: 1;
+	@include to(980px) {
+		font-size: 49rem;
+	}
+
+	@include to(580px) {
+		font-size: 30rem;
+	}
+}
+
+.h2,
+.content h2 {
+	font-size: 52rem;
+	@include to(980px) {
+		font-size: 38rem;
+	}
+
+	@include to(580px) {
+		font-size: 24rem;
+	}
+}
+
+.strong,
+strong {
+	font-weight: bold;
+}

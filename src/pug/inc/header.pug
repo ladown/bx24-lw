@@ -1,0 +1,33 @@
+-
+	var navLinks = [
+		{
+			href: '#',
+			text: 'Возможности',
+		},
+		{
+			href: '#',
+			text: 'Внедрение',
+		},
+		{
+			href: '#',
+			text: 'Возможности',
+		},
+		{
+			href: '#',
+			text: 'Обучение',
+		},
+	];
+
++b.HEADER.header
+	+e.wrap.wrap.flex._vertical._justify
+		+e.A.logo(href='/')
+			img(
+				alt='logo-image'
+				src=`${imgPath}/common/logo.svg`)
+		+e.NAV.nav.flex._vertical._justify
+			each link in navLinks
+				+e.A.link(href=link.href) #{ link.text }
+			+e.A.callback(href='#') 8 (800) 123-45-67
+		+e.A.callback(href='#') 8 (800) 123-45-67
+		+e.BUTTON.menu-btn(data-header='open-btn')
+			span 

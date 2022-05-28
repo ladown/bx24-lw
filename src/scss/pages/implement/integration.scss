@@ -1,0 +1,202 @@
+.integration {
+	padding: 50rem 0;
+
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	&__content {
+		overflow: hidden;
+		max-height: 550rem;
+		position: relative;
+
+		@include to(980px) {
+			max-height: unset;
+			flex-flow: column nowrap;
+		}
+
+		@include from(981px) {
+			&::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				height: 280rem;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+				z-index: 1;
+				pointer-events: none;
+				transition: opacity 0.3s linear;
+			}
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		flex: 0 0 410rem;
+
+		@include to(980px) {
+			flex: 1;
+		}
+	}
+
+	&__items {
+		position: relative;
+		overflow: hidden;
+		flex: 0 0 660rem;
+
+		@include to(1200px) {
+			flex-basis: 760rem;
+		}
+
+		@include to(980px) {
+			flex: 1;
+			margin-top: 20rem;
+		}
+	}
+
+	&__item {
+		position: relative;
+
+		&:not(:last-child) {
+			margin-bottom: 60rem;
+
+			@include to(980px) {
+				margin-bottom: 20rem;
+			}
+
+			@include from(981px) {
+				.integration__item-counter {
+					&::before,
+					&::after {
+						content: '';
+						width: 2px;
+						position: absolute;
+						top: 0;
+						left: 20rem;
+						z-index: -1;
+					}
+
+					&::before {
+						height: calc(100% + 60rem);
+						background-color: #ecedef;
+					}
+
+					&::after {
+						height: 0;
+						background-color: $green;
+						transition: height 0.3s linear;
+					}
+				}
+			}
+		}
+
+		@include from(981px) {
+			&.is-active {
+				.integration__item-counter {
+					border-color: $green;
+					background-color: $green;
+					color: #fff;
+					transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
+				}
+
+				&:not(:last-child) {
+					.integration__item-counter {
+						&::after {
+							height: calc(100% + 60rem);
+							transition: height 0.3s linear;
+						}
+					}
+				}
+			}
+		}
+
+		&-description {
+			margin-top: 10rem;
+			position: relative;
+			flex: 0 0 520rem;
+
+			@include to(1200px) {
+				flex-basis: 620rem;
+			}
+
+			@include to(980px) {
+				flex: 1;
+			}
+
+			@include to(580px) {
+				margin-top: 7rem;
+			}
+		}
+
+		&-counter {
+			flex: 0 0 40rem;
+			width: 40rem;
+			height: 40rem;
+			border: 1px solid #ecedef;
+			background-color: #fff;
+			font-weight: 700;
+			line-height: 28rem;
+			border-radius: 100%;
+			transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
+			margin-right: 30rem;
+
+			@include to(980px) {
+				line-height: 24rem;
+			}
+
+			@include to(580px) {
+				font-size: 14rem;
+				margin-right: 15rem;
+				flex-basis: 30rem;
+				height: 30rem;
+				width: 30rem;
+				line-height: 20rem;
+			}
+
+			@extend %flex-center;
+		}
+
+		&-caption {
+			font-weight: 700;
+			font-size: 28rem;
+			line-height: 1;
+
+			@include to(980px) {
+				font-size: 24rem;
+			}
+
+			@include to(580px) {
+				font-size: 18rem;
+			}
+		}
+
+		&-text {
+			margin-top: 24rem;
+			font-size: 16rem;
+			line-height: 28rem;
+
+			@include to(1200px) {
+				font-size: 18rem;
+			}
+
+			@include to(980px) {
+				margin-top: 15rem;
+				line-height: 24rem;
+			}
+
+			@include to(580px) {
+				font-size: 14rem;
+				margin-top: 10rem;
+			}
+		}
+	}
+
+	&__button {
+		margin: 50rem auto 0 auto;
+		@include to(980px) {
+			margin-top: 30rem;
+		}
+	}
+}

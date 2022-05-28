@@ -1,0 +1,30 @@
++b.SECTION.callback
+	+e.overlay
+	+e.wrap
+		+e.BUTTON.close
+			+icon('close', '0 0 24 24')
+		+e.H3.title Заголовок окна
+		+e.FORM.form(action='#')
+			+e.fields
+				+b.LABEL.label._light.flex
+					+e.SPAN.text Как Вас зовут
+					+b.INPUT.field._light(
+						type='text'
+						name='name'
+						placeholder='Имя')
+				+b.LABEL.label._light.flex
+					+e.SPAN.text Контактный телефон
+					+b.INPUT.field._light(
+						type='tel'
+						inputmode='tel'
+						name='phone'
+						placeholder='+7 ( ___ ) __-__ ___')
+			+b.LABEL.checkbox._light.flex._vertical
+				+e.INPUT.input(
+					type='checkbox'
+					name='policy')
+				+e.checkmark
+				+e.text
+					| Согласен на обработку&nbsp;
+					a(href='#') персональных данных
+			+button({"btn": true}) оТПРАВИТЬ

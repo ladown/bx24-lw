@@ -1,0 +1,17 @@
+module.exports = {
+	tabWidth: 2,
+	singleQuote: true,
+	trailingComma: 'all',
+	semi: true,
+	jsxBracketSameLine: true,
+	bracketLine: true,
+	printWidth: 120,
+	useTabs: true,
+	jsxSingleQuote: true,
+	endOfLine: 'auto',
+	bracketSameLine: true,
+	pugUseTabs: true,
+	pugAttributeSeparator: 'none',
+	pugWrapAttributesThreshold: 1,
+	pugSingleFileComponentIndentation: true,
+};

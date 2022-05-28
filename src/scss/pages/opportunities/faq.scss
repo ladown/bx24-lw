@@ -1,0 +1,185 @@
+.faq {
+	padding: 50rem 0;
+
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	&__item {
+		&:first-child {
+			.faq__item-content {
+				display: flex;
+			}
+		}
+
+		&-head {
+			cursor: pointer;
+			padding: 32rem 0;
+			font-weight: 700;
+			font-size: 52rem;
+			line-height: 1.15;
+
+			@include to(980px) {
+				padding: 20rem 0;
+				font-size: 36rem;
+			}
+
+			@include to(580px) {
+				padding: 16rem 0;
+				font-size: 20rem;
+			}
+
+			&:hover {
+				.faq__item-icon {
+					border-color: $green;
+					transition: border-color 0.3s linear;
+					span {
+						background-color: $green;
+						transition: background-color 0.3s linear;
+					}
+				}
+			}
+		}
+
+		&-counter {
+			flex: 0 0 auto;
+			margin-right: 24rem;
+
+			@include to(580px) {
+				margin-right: 14rem;
+			}
+		}
+
+		&-caption {
+			flex: 1;
+			margin-right: 24rem;
+
+			@include to(580px) {
+				margin-right: 14rem;
+			}
+		}
+
+		&-icon {
+			position: relative;
+			width: 40rem;
+			height: 40rem;
+			flex: 0 0 40rem;
+			border: 2px solid #ecedef;
+			border-radius: 100%;
+			transition: border-color 0.3s linear;
+
+			@include to(580px) {
+				width: 30rem;
+				height: 30rem;
+				flex: 0 0 30rem;
+			}
+
+			.is-opened & {
+				border-color: $green;
+				transition: border-color 0.3s linear;
+			}
+
+			span {
+				position: absolute;
+				background-color: $black;
+				border-radius: 100px;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				transition: background-color 0.3s linear, opacity 0.3s linear;
+
+				.is-opened & {
+					background-color: $green;
+					transition: background-color 0.3s linear, opacity 0.3s linear;
+
+					&:nth-child(2) {
+						opacity: 0;
+						transition: background-color 0.3s linear, opacity 0.3s linear;
+					}
+				}
+
+				&:nth-child(1) {
+					width: 16rem;
+					height: 2px;
+
+					@include to(580px) {
+						width: 12rem;
+					}
+				}
+
+				&:nth-child(2) {
+					width: 2px;
+					height: 16rem;
+
+					@include to(580px) {
+						height: 12rem;
+					}
+				}
+			}
+		}
+
+		&-content {
+			display: none;
+
+			@include to(768px) {
+				flex-flow: column nowrap;
+			}
+		}
+
+		&-text {
+			padding: 10rem 0;
+			flex: 0 1 625rem;
+			font-size: 16rem;
+			line-height: 1.75;
+
+			@include to(1200px) {
+				flex-basis: 800rem;
+			}
+
+			@include to(768px) {
+				flex: 1;
+			}
+
+			@include to(580px) {
+				font-size: 14rem;
+				line-height: 1.5;
+			}
+
+			p {
+				&:not(:last-child) {
+					margin-bottom: 24rem;
+
+					@include to(580px) {
+						margin-bottom: 14rem;
+					}
+				}
+			}
+		}
+
+		&-img {
+			padding: 10rem 0;
+			margin-left: 30rem;
+
+			@include from(769px) {
+				flex: 0 0 560rem;
+			}
+
+			@include to(768px) {
+				margin: 0 auto;
+			}
+
+			img {
+				display: block;
+
+				@include from(769px) {
+					@include cover;
+				}
+
+				@include to(768px) {
+					width: 553rem;
+					height: 412rem;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,31 @@
+-
+	var reasons = {
+		title: 'Почему внедрение стоит <br/>доверить нам',
+		subtitle: '«Будь проще! Делай лучше! Развивайся <br/>и развивай других!»,',
+		content: {
+			caption: 'Наша команда занимается digital-решениями для бизнеса с 2012 года.',
+			text: [
+				'Мы специализируемся не только на внедрении CRM системы, но и на комплексном маркетинге, рекламе, SEO, интергациях, разработке сайтов и приложений. Этот опыт позволяет нам предлагать клиентам лучшие инструменты для оптимизации и развития их бизнеса.',
+				'Мы готовы предоставить каждому клиенту максимальную поддержку и будем счастливы видеть развитие его бизнеса.',
+			],
+		},
+	};
+
++b.SECTION.reasons
+	.wrap
+		+e.H2.title.h2 !{ reasons.title }
+		+e.P.subtitle !{ reasons.subtitle }
+		+e.content.flex._start._justify
+			+e.caption #{ reasons.content.caption }
+			+e.description
+				+e.text
+					each text in reasons.content.text
+						p #{ text }
+				+button Рассчитать стоимость
+			+e.bg
+				+e.IMG.img(
+					src=`${imgPath}reasons/photo.svg`
+					alt='main-photo')
+				+e.IMG.bg-right(
+					src=`${imgPath}reasons/right-img.svg`
+					alt='right-background')

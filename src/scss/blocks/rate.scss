@@ -1,0 +1,174 @@
+.rate {
+	flex-flow: column nowrap;
+	height: auto;
+	background-color: #fff;
+	padding: 40rem 32rem;
+	border: 2px solid #ecedef;
+	border-radius: 32rem;
+
+	@include to(580px) {
+		width: 360rem;
+		padding: 30rem 20rem;
+	}
+
+	@include to(440px) {
+		width: 320rem;
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 28rem;
+		line-height: 1;
+		text-align: center;
+		@include to(980px) {
+			font-size: 24rem;
+		}
+
+		@include to(580px) {
+			font-size: 20rem;
+		}
+	}
+
+	&__subtitle {
+		margin-top: 20rem;
+		margin-bottom: auto;
+		font-size: 16rem;
+		line-height: 1.75;
+		text-align: center;
+
+		@include to(580px) {
+			margin-top: 15rem;
+			font-size: 14rem;
+			line-height: 1.5;
+		}
+	}
+
+	&__features {
+		margin-top: 50rem;
+
+		@include to(980px) {
+			margin-top: 40rem;
+		}
+
+		@include to(580px) {
+			margin-top: 30rem;
+		}
+	}
+
+	&__feature {
+		text-align: center;
+		&:not(:last-child) {
+			margin-bottom: 32rem;
+
+			@include to(980px) {
+				margin-bottom: 24rem;
+			}
+
+			@include to(580px) {
+				margin-bottom: 16rem;
+			}
+		}
+
+		&_bg {
+			position: relative;
+			&::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 220rem;
+				height: 70rem;
+				background: url($imgPath + 'backgrounds/price-feature-bg.svg') center center / cover no-repeat;
+				z-index: -1;
+				pointer-events: none;
+
+				@include to(580px) {
+					width: 190rem;
+					height: 60rem;
+				}
+			}
+		}
+
+		&-header {
+			font-weight: 700;
+			font-size: 18rem;
+			line-height: 1.5;
+
+			@include to(580px) {
+				font-size: 16rem;
+				line-height: 1.3;
+			}
+		}
+
+		&-subheader {
+			font-size: 16rem;
+			line-height: 1.75;
+
+			@include to(580px) {
+				font-size: 14rem;
+				line-height: 1.5;
+			}
+		}
+	}
+
+	&__price {
+		margin-top: 50rem;
+
+		@include to(980px) {
+			margin-top: 40rem;
+		}
+
+		@include to(580px) {
+			margin-top: 30rem;
+		}
+
+		&-item {
+			padding-bottom: 8rem;
+			border-bottom: 2px solid #ecedef;
+
+			&:not(:first-child) {
+				padding-top: 8rem;
+			}
+		}
+
+		&-cell {
+			flex: 0 1 auto;
+			font-size: 14rem;
+			line-height: 2;
+
+			&_right {
+				font-weight: 700;
+				@include to(440px) {
+					flex-flow: column nowrap;
+				}
+			}
+		}
+
+		&-title {
+			font-weight: 700;
+		}
+
+		&-num {
+			@include from(581px) {
+				&:not(:last-child) {
+					margin-right: 8rem;
+				}
+			}
+
+			&_old {
+				color: $green;
+				text-decoration-line: line-through;
+			}
+		}
+	}
+
+	&__button {
+		margin: 32rem auto 0 auto;
+		align-self: flex-end;
+
+		@include to(980px) {
+			margin-top: 24rem;
+		}
+	}
+}

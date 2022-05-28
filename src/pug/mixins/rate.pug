@@ -1,0 +1,29 @@
+mixin rate(data = {})
+	+b.rate.flex(class=`${data.slide ? 'swiper-slide' : ''}`)
+		if data.title
+			+e.title #{ data.title }
+		if data.subtitle
+			+e.subtitle #{ data.subtitle }
+		if data.features
+			+e.features 
+				each feature in data.features
+					+e.feature(class=`${feature.bg ? '_bg' : ''}`)
+						if feature.header
+							+e.feature-header #{ feature.header }
+						if feature.subheader
+							+e.feature-subheader #{ feature.subheader }
+		if data.price
+			+e.price
+				each price in data.price
+					+e.price-item.flex._end._justify
+						+e.price-cell
+							if price.title
+								+e.price-title #{ price.title }
+							if price.subtitle
+								+e.price-subtitle #{ price.subtitle }
+						+e.price-cell._right.flex
+							if price.sale
+								+e.price-num._old #{ price.sale }
+							if price.num
+								+e.price-num #{ price.num }
+		+button подробнее

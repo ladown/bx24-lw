@@ -1,0 +1,142 @@
+.promo {
+	overflow: hidden;
+	position: relative;
+	padding-top: 220rem;
+	padding-bottom: 350rem;
+
+	&::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 440rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+		pointer-events: none;
+		z-index: -1;
+
+		@include to(980px) {
+			height: 200rem;
+		}
+	}
+
+	@include to(980px) {
+		padding-top: 160rem;
+		padding-bottom: 275rem;
+	}
+
+	@include to(580px) {
+		padding-top: 100rem;
+		padding-bottom: 200rem;
+	}
+
+	&__title {
+		width: 100%;
+		max-width: 1060rem;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	&__subtitle {
+		font-size: 24rem;
+		line-height: 42rem;
+		width: 100%;
+		max-width: 880rem;
+		text-align: center;
+		margin: 16rem auto 0 auto;
+
+		@include to(980px) {
+			font-size: 19rem;
+			line-height: 30rem;
+			max-height: 770rem;
+		}
+
+		@include to(580px) {
+			font-size: 14rem;
+			line-height: 24rem;
+		}
+	}
+
+	&__lines {
+		display: flex;
+		flex-flow: column nowrap;
+		width: 5400rem;
+		position: absolute;
+		left: -1890rem;
+		transform: rotate(-10deg);
+
+		@include from(981px) {
+			bottom: 100rem;
+		}
+
+		@include to(980px) {
+			bottom: 55rem;
+		}
+
+		@include to(580px) {
+			width: 3600rem;
+			left: -1000rem;
+		}
+	}
+
+	&__line {
+		&:nth-child(1) {
+			margin-left: auto;
+		}
+
+		&:nth-child(2) {
+			margin-right: auto;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 15rem;
+
+			@include to(580px) {
+				margin-bottom: 10rem;
+			}
+		}
+		&-item {
+			flex: 0 0 auto;
+			margin: 0 5rem;
+			font-size: 14rem;
+			padding: 24rem;
+			border: 1px solid $black;
+			border-radius: 128rem;
+			line-height: 20rem;
+
+			@include to(580px) {
+				margin: 0 2rem;
+				font-size: 12rem;
+				padding: 14rem;
+				line-height: 18rem;
+			}
+		}
+	}
+
+	&__bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1632rem;
+		height: 1009rem;
+		z-index: -2;
+		pointer-events: none;
+
+		@include to(980px) {
+			width: 100%;
+			height: auto;
+		}
+
+		img {
+			@include cover;
+		}
+	}
+
+	&__button {
+		margin: 22rem auto 0 auto;
+		@include to(980px) {
+			margin-top: 15rem;
+		}
+	}
+}

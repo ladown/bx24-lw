@@ -1,0 +1,29 @@
+mixin info(data = {})
+	+b.SECTION.info
+		+e.wrap.wrap.flex._vertical._justify
+			+e.description
+				if data.title
+					+e.H2.title.h2 #{ data.title }
+				if data.subtitle
+					+e.P.subtitle !{ data.subtitle }
+				if data.slides
+					+e.slider.swiper
+						.swiper-wrapper
+							each slide, index in data.slides
+								+e.slide.swiper-slide
+									+e.slide-caption 0#{ index + 1 }. #{ slide.caption }
+									+e.P.slide-text #{ slide.text }
+						+e.NAV.progress.flex._vertical
+				if data.link
+					+e.A.link.flex._vertical(href='#') 
+						span #{ data.link }
+						img(
+							alt='arrow-link-icon'
+							src=`${imgPath}common/arrow-link.svg`)
+			if data.img
+				+e.img
+					img(
+						alt='info-image'
+						src=`${imgPath}info/${data.img}`)
+		if data.price
+			+price(data.price)

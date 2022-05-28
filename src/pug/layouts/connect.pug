@@ -1,0 +1,118 @@
+-
+	var connectInfo = {
+		title: 'Связываем CRM <br/>с Внешними сервисами',
+		leftCell: [
+			{
+					caption: 'Коммуникации:',
+					logos: [
+						'whatsapp.svg',
+						'viber.svg',
+						'telegramm.svg',
+						'zadarm.svg',
+						'connect-1.svg',
+						'vk.svg',
+						'odnoklassniki.svg',
+						'clarity_chat.svg',
+					]
+			},
+			{
+					caption: 'Финансы и бухгалетрия:',
+					logos: [
+						'1c.svg',
+						'connect-2.svg',
+						'sber.svg',
+						'connect-3.svg',
+						'connect-4.svg',
+						'umoney.svg',
+					]
+			},
+			{
+					caption: 'Маркетплейсы и доски:',
+					logos: [
+						'avito.svg',
+						'jua.svg',
+						'connect-5.svg',
+						'wb.svg',
+						'ozon.svg',
+						'sber-market.svg',
+						'ali.svg',
+					]
+			},
+		],
+		rightCell: [
+			{
+					caption: 'Сайты:',
+					logos: [
+						'1c-bx.svg',
+						'tilda.svg',
+						'wp.svg',
+						'shopify.svg',
+						'joomla.svg',
+						'opencart.svg',
+					]
+			},
+			{
+					caption: 'Рекламные платформы:',
+					logos: [
+						'connect-6.svg',
+						'connect-7.svg',
+						'vk.svg',
+					]
+			},
+			{
+					caption: 'Системы аналитики:',
+					logos: [
+						'connect-8.svg',
+						'google-analytics.svg',
+						'connect-9.svg',
+						'connect-10.svg',
+					]
+			},
+		],
+	};
+
++b.SECTION.connect
+	.wrap
+		if connectInfo.title
+			+e.H2.title.h2 !{ connectInfo.title }
+		+e.content.flex._vertical._justify
+			+e.cell._left
+				each row in connectInfo.leftCell
+					+e.item
+						if row.caption
+							+e.item-label #{ row.caption }
+						if row.logos
+							+e.item-logos.flex._vertical
+								each logo in row.logos
+									img(
+										src=`${imgPath}connect/${logo}`
+										alt=`${logo.replace('.svg', '')}-icon`)
+			+e.cell._center
+				+e.logo
+					img(
+						src=`${imgPath}common/bx24-logo.svg`
+						alt='bitrix24-logo')
+				+e.IMG.logo-bg(
+					src=`${imgPath}connect/logo-bg.svg`
+					alt='logo-background-line')
+				+e.IMG.lines._left(
+					src=`${imgPath}/connect/left-lines.svg`
+					alt='lines-images')
+				+e.IMG.lines._right(
+					src=`${imgPath}/connect/right-lines.svg`
+					alt='lines-images')
+			+e.cell._right
+				each row in connectInfo.rightCell
+					+e.item
+						if row.caption
+							+e.item-label #{ row.caption }
+						if row.logos
+							+e.item-logos.flex._vertical
+								each logo in row.logos
+									img(
+										src=`${imgPath}connect/${logo}`
+										alt=`${logo.replace('.svg', '')}-icon`)
+		+e.bg
+			img(
+				src=`${imgPath}connect/bg.svg`
+				alt='connect-bg')

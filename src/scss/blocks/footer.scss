@@ -1,0 +1,147 @@
+.footer {
+	padding: 50rem;
+	background-color: $black;
+
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	&__row {
+		@include to(768px) {
+			flex-flow: column nowrap;
+		}
+
+		&:first-child {
+			padding-top: 50rem;
+			border-top: 1px solid #2a2b31;
+
+			@include to(580px) {
+				padding-top: 30rem;
+			}
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 50rem;
+
+			@include to(580px) {
+				margin-bottom: 30rem;
+			}
+		}
+	}
+
+	&__links {
+		@include to(768px) {
+			margin-top: 20rem;
+		}
+
+		@include to(580px) {
+			flex-flow: column nowrap;
+		}
+	}
+
+	&__link {
+		font-weight: 700;
+		font-size: 18rem;
+		line-height: 1.5;
+		color: #ffffff;
+		transition: color 0.3s linear;
+
+		@include to(1200px) {
+			line-height: 1.3;
+			font-size: 20rem;
+		}
+
+		@include to(580px) {
+			font-size: 18rem;
+		}
+
+		&:hover {
+			color: $green;
+			transition: color 0.3s linear;
+		}
+
+		&:not(:last-child) {
+			margin-right: 60rem;
+
+			@include to(980px) {
+				margin-right: 30rem;
+			}
+
+			@include to(580px) {
+				margin-right: 0;
+				margin-bottom: 10rem;
+			}
+		}
+	}
+	&__info {
+		flex: 1;
+		font-size: 14rem;
+		line-height: 28rem;
+		color: rgba(255, 255, 255, 0.4);
+
+		@include to(1200px) {
+			font-size: 16rem;
+		}
+
+		@include to(580px) {
+			font-size: 14rem;
+			flex-flow: column nowrap;
+			text-align: center;
+		}
+
+		p {
+			&:first-child {
+				margin-right: auto;
+
+				@include to(768px) {
+					margin-right: 0;
+				}
+			}
+			&:not(:first-child) {
+				margin-right: 70rem;
+
+				@include to(980px) {
+					margin-right: 50rem;
+				}
+
+				@include to(768px) {
+					margin-right: 0;
+					margin-left: 30rem;
+				}
+
+				@include to(580px) {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	&__social {
+		flex: 0 0 auto;
+
+		@include to(768px) {
+			margin-top: 20rem;
+		}
+		&-link {
+			flex: 0 0 24px;
+			width: 24rem;
+			height: 24rem;
+			transition: opacity 0.3s linear;
+
+			@include to(580px) {
+				flex: 0 0 30rem;
+				width: 30rem;
+				height: 30rem;
+			}
+
+			&:hover {
+				opacity: 0.6;
+				transition: opacity 0.3s linear;
+			}
+
+			&:not(:last-child) {
+				margin-right: 16rem;
+			}
+		}
+	}
+}

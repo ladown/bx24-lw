@@ -1,0 +1,211 @@
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding-top: 50rem;
+	transition: padding 0.3s linear, background 0.3s linear;
+	z-index: 2;
+
+	@include to(580px) {
+		padding-top: 30rem;
+	}
+
+	&.is-opened {
+		padding: 25rem 0;
+		background-color: #fff;
+		@include to(980px) {
+			padding: 15rem 0;
+		}
+	}
+
+	&__wrap {
+		flex-flow: row nowrap;
+	}
+
+	&__logo {
+		width: 100%;
+		max-width: 130rem;
+		height: auto;
+
+		@include to(980px) {
+			max-width: 160rem;
+		}
+
+		@include to(580px) {
+			max-width: 130rem;
+		}
+
+		img {
+			display: block;
+			@include cover;
+		}
+	}
+
+	&__nav {
+		@include to(980px) {
+			display: none;
+			flex-flow: column nowrap;
+			justify-content: initial;
+			position: fixed;
+			width: 100%;
+			overflow-y: auto;
+			top: 55rem;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 40rem;
+			transform: translateX(-100%);
+			z-index: 10;
+			background-color: #fff;
+		}
+
+		@include to(440px) {
+			top: 51rem;
+		}
+	}
+
+	&__link {
+		padding: 8rem;
+		font-weight: 700;
+		font-size: 13rem;
+		line-height: 20rem;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		transition: color 0.3s linear;
+
+		@include to(980px) {
+			padding: 0;
+		}
+
+		&:not(:first-child) {
+			@include to(980px) {
+				margin-top: 40rem;
+			}
+		}
+
+		&:hover {
+			color: $green;
+			transition: color 0.3s linear;
+		}
+	}
+
+	&__callback {
+		position: relative;
+		padding: 14rem 24rem 14rem 48rem;
+		border: 1px solid #13141b;
+		border-radius: 32rem;
+		font-weight: 700;
+		font-size: 13rem;
+		line-height: 20rem;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		transition: color 0.3s linear, border 0.3s linear;
+
+		@include to(980px) {
+			display: none;
+			margin-top: 100rem;
+		}
+
+		&:hover {
+			color: $green;
+			border-color: $green;
+		}
+
+		&::before {
+			content: '';
+			width: 8rem;
+			height: 8rem;
+			position: absolute;
+			top: 19rem;
+			left: 28rem;
+			background-color: $green;
+			border-radius: 100%;
+		}
+
+		.header__nav & {
+			display: none;
+			@include to(980px) {
+				display: block;
+			}
+		}
+	}
+
+	&__menu-btn {
+		display: none;
+		position: relative;
+		height: 20rem;
+		width: 40rem;
+		flex-flow: column nowrap;
+
+		@extend %flex-center;
+
+		@include to(980px) {
+			display: flex;
+		}
+
+		@include to(580px) {
+			width: 22rem;
+			height: 12rem;
+		}
+
+		&::before,
+		&::after,
+		span {
+			display: block;
+			width: 100%;
+			height: 3px;
+			background-color: $black;
+			border-radius: 100rem;
+			@include to(580px) {
+				height: 2px;
+			}
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			background-color: $black;
+			transition: all 0.3s linear;
+			pointer-events: none;
+		}
+
+		&::before {
+			top: 0;
+		}
+
+		&::after {
+			bottom: 0;
+		}
+
+		span {
+			margin: 4rem 0;
+			transition: opacity 0.3s linear;
+			pointer-events: none;
+			@include to(580px) {
+				margin: 2rem 0;
+			}
+		}
+
+		.is-opened & {
+			&::before,
+			&::after {
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) rotate3d(0, 0, 1, 45deg);
+				transition: all 0.3s linear;
+			}
+
+			&::after {
+				transform: translate(-50%, -50%) rotate3d(0, 0, 1, -45deg);
+			}
+
+			span {
+				opacity: 0;
+				transition: opacity 0.3s linear;
+			}
+		}
+	}
+}

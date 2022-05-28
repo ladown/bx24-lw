@@ -1,0 +1,31 @@
+-
+	var data = [
+		{
+			caption: 'Формируем запрос',
+			text: 'Это первая встреча. Наш менеджер обсудит с вами потребности вашего бизнеса, скажет возможно ли решить их с помощью Битрикс24. А также проведет презентацию возможностей системы.'
+		},
+		{
+			caption: 'Проводим первичный аудит',
+		},
+		{
+			caption: 'Запускем работы',
+		},
+		{
+			caption: 'Составляем и согласовываем ТЗ',
+		},
+	];
+
++b.SECTION.integration
+	.wrap
+		+e.content.flex._start._justify
+			+e.title.h2 Как проходит внедрение
+			+e.items
+				each item, index in data
+					+e.item.flex._justify._start(class=`${index === 0 ? 'is-active': ''}`)
+						+e.item-counter #{ index + 1 }
+						+e.item-description
+							if item.caption
+								+e.item-caption #{ item.caption }
+							if item.text
+								+e.item-text #{ item.text }
+		+button Давайте работать!

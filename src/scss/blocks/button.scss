@@ -1,0 +1,56 @@
+.button {
+	width: 100%;
+	max-width: 260rem;
+	background-color: $black;
+	border-radius: 150rem;
+	padding: 24rem 32rem;
+
+	font-weight: 700;
+	font-size: 13rem;
+	line-height: 20rem;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	color: #ffffff;
+
+	@extend %flex-center;
+	@extend %text-overflow;
+
+	@include to(580px) {
+		padding: 16rem 20rem;
+	}
+
+	&_green {
+		background-color: $green;
+		color: #fff;
+	}
+
+	&:hover {
+		.button__text {
+			transform: translateY(-100%);
+		}
+
+		.button__duplicate {
+			transform: translateY(0%);
+		}
+	}
+
+	&__block {
+		position: relative;
+		overflow: hidden;
+		flex-flow: column nowrap;
+	}
+
+	&__text {
+		transition: transform 0.3s linear;
+	}
+
+	&__duplicate {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+		transform: translateY(100%);
+		transition: transform 0.3s linear;
+	}
+}

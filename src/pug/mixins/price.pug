@@ -1,0 +1,9 @@
+mixin price(data = {})
+	+b.SECTION.price(class=`${data.bg ? '_bg' : ''}`)
+		.wrap
+			if data.title
+				+e.H2.title.h2 #{ data.title }
+			+e.slider.swiper
+				.swiper-wrapper
+					each slide in data.rates
+						+rate(slide)

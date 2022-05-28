@@ -1,0 +1,168 @@
+.contact {
+	padding-top: 50rem;
+	background-color: $black;
+
+	@include to(580px) {
+		padding-top: 30rem;
+	}
+
+	&__wrap {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__header {
+		width: 100%;
+		max-width: 830rem;
+
+		@include to(768px) {
+			max-width: 80%;
+		}
+
+		@include to(580px) {
+			max-width: 100%;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		color: #fff;
+	}
+
+	&__subtitle {
+		margin-top: 24rem;
+		font-size: 16rem;
+		line-height: 1.75;
+		color: #ffffff;
+
+		@include to(980px) {
+			margin-top: 20rem;
+			line-height: 1.5;
+		}
+
+		@include to(576px) {
+			margin-top: 16rem;
+			font-size: 14rem;
+		}
+	}
+
+	&__form {
+		margin-top: 60rem;
+
+		@include to(980px) {
+			margin-top: 40rem;
+		}
+
+		@include to(580px) {
+			margin-top: 20rem;
+		}
+	}
+
+	&__fields {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(23%, 23%));
+		gap: 24rem;
+		max-width: 100%;
+
+		@include to(768px) {
+			grid-template-columns: repeat(2, 1fr);
+			max-width: 80%;
+		}
+
+		@include to(580px) {
+			grid-template-columns: 1fr;
+			gap: 20rem;
+			max-width: 100%;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 40rem;
+
+			@include to(980px) {
+				margin-bottom: 25rem;
+			}
+
+			@include to(580px) {
+				margin-bottom: 15rem;
+			}
+		}
+	}
+
+	.label_textarea {
+		grid-column: span 2;
+		max-width: 520rem;
+
+		@include to(768px) {
+			grid-column: 2 / 3;
+			grid-row: 1 / 4;
+		}
+
+		@include to(580px) {
+			grid-column: initial;
+			grid-row: initial;
+		}
+	}
+
+	&__button {
+		@include from(769px) {
+			align-self: flex-end;
+			justify-self: flex-end;
+		}
+
+		@include to(768px) {
+			align-self: center;
+			justify-self: center;
+		}
+
+		@include to(580px) {
+			margin-top: 10rem;
+		}
+	}
+
+	&__img {
+		display: none;
+		position: absolute;
+		top: 30rem;
+		right: -10rem;
+		pointer-events: none;
+		z-index: -1;
+
+		@include to(1200px) {
+			top: -30rem;
+			right: -30rem;
+		}
+
+		@include to(980px) {
+			right: -60rem;
+		}
+
+		@include from(581px) {
+			display: block;
+		}
+
+		&::before {
+			display: none;
+			content: '';
+			position: absolute;
+			bottom: 30rem;
+			right: -50rem;
+			width: 463rem;
+			height: 547rem;
+			background: url($imgPath + 'backgrounds/contact-bg.svg') center center / cover no-repeat;
+
+			@include from(980px) {
+				display: block;
+			}
+		}
+
+		img {
+			width: 260rem;
+			height: 507rem;
+
+			@include to(1200px) {
+				width: 300rem;
+				height: 583rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,217 @@
+.reasons {
+	padding: 50rem 0;
+
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	&__title {
+		font-weight: 700;
+		text-align: center;
+		width: 100%;
+		max-width: 850rem;
+		margin: 0 auto;
+
+		br {
+			@include to(580px) {
+				display: none;
+			}
+		}
+	}
+
+	&__subtitle {
+		position: relative;
+		text-align: center;
+		width: 100%;
+		max-width: 630rem;
+		margin: 30rem auto 0 auto;
+		font-size: 24rem;
+		line-height: 175%;
+
+		@include to(980px) {
+			font-size: 20rem;
+			line-height: 150%;
+		}
+
+		@include to(580px) {
+			font-size: 18rem;
+			line-height: 130%;
+		}
+
+		br {
+			@include to(580px) {
+				display: none;
+			}
+		}
+
+		@include from(769px) {
+			&::before {
+				content: '';
+				position: absolute;
+				top: -30rem;
+				right: -50rem;
+				background: url($imgPath + 'reasons/arrow.svg') center center / cover no-repeat;
+				width: 850rem;
+				height: 111rem;
+				z-index: -1;
+				pointer-events: none;
+			}
+		}
+	}
+
+	&__content {
+		margin-top: 60rem;
+		position: relative;
+		padding-bottom: 230rem;
+
+		@include from(769px) {
+			border-bottom: 4px solid $black;
+		}
+
+		@include to(1200px) {
+			padding-bottom: 200rem;
+		}
+
+		@include to(980px) {
+			margin-top: 40rem;
+		}
+
+		@include to(768px) {
+			padding-bottom: 0;
+			flex-flow: column nowrap;
+		}
+
+		@include to(580px) {
+			margin-top: 20rem;
+		}
+	}
+
+	&__description {
+		flex: 0 1 520rem;
+
+		@include to(1200px) {
+			flex-basis: 600rem;
+		}
+
+		@include to(980px) {
+			flex: 1;
+		}
+
+		@include to(768px) {
+			margin-top: 15rem;
+			order: 3;
+		}
+	}
+
+	&__caption {
+		flex: 0 0 520rem;
+		font-weight: 700;
+		font-size: 28rem;
+		line-height: 1.3;
+
+		@include to(980px) {
+			margin-right: 50rem;
+			font-size: 24rem;
+		}
+
+		@include to(768px) {
+			order: 1;
+			flex: 1;
+			margin-right: 0;
+		}
+
+		@include to(580px) {
+			font-size: 20rem;
+		}
+	}
+
+	&__text {
+		font-size: 16rem;
+		line-height: 175%;
+
+		@include to(1200px) {
+			font-size: 18rem;
+		}
+
+		@include to(580px) {
+			font-size: 16rem;
+		}
+
+		p {
+			&:not(:last-child) {
+				margin-bottom: 40rem;
+
+				@include to(980px) {
+					margin-bottom: 30rem;
+				}
+
+				@include to(580px) {
+					margin-bottom: 20rem;
+				}
+			}
+		}
+	}
+
+	&__button {
+		margin-top: 40rem;
+
+		@include to(980px) {
+			margin-top: 30rem;
+		}
+
+		@include to(768px) {
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		@include to(580px) {
+			margin-top: 20rem;
+		}
+	}
+
+	&__img {
+		width: 592rem;
+		height: 438rem;
+
+		@include to(980px) {
+			width: 520rem;
+			height: 385rem;
+		}
+
+		@include to(768px) {
+			margin: 15rem auto 0 auto;
+		}
+	}
+
+	&__bg {
+		@include from(769px) {
+			pointer-events: none;
+			transform: translateY(25rem);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+
+		@include to(768px) {
+			order: 2;
+		}
+
+		&-right {
+			position: absolute;
+			right: 5rem;
+			bottom: 5rem;
+			width: 251rem;
+			height: 272rem;
+
+			@include to(980px) {
+				width: 225rem;
+				height: 243rem;
+			}
+
+			@include to(768px) {
+				display: none;
+			}
+		}
+	}
+}

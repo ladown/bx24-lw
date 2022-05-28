@@ -1,0 +1,97 @@
+/*
+* Позволяет задавать равные колонки с отступами 
+* $count - число элементов в строку
+* $margin - отступ margin для айтемов
+* $addmargin - нужно ли задавать маргин для селектора (чаще всего подходит для адаптива)
+*/
+
+@mixin item-self($count, $margin: 0, $addmargin: true) {
+	@if ($margin == 0) {
+		width: (div(100, $count) * 1%);
+	} @else {
+		width: calc(#{div(100, $count)}% - #{$margin * 2}px);
+	}
+
+	@if ($addmargin == true) {
+		margin: #{$margin}px;
+	}
+}
+
+@mixin list-self($margin: 0) {
+	margin-left: -#{$margin}px;
+	margin-right: -#{$margin}px;
+}
+
+@mixin items($count, $margin: 0, $addmargin: true) {
+	@if ($addmargin == true) {
+		margin-left: -#{$margin}rem;
+		margin-right: -#{$margin}rem;
+	}
+
+	& > * {
+		@if ($margin == 0) {
+			width: (div(100, $count) * 1%);
+		} @else {
+			width: calc(#{div(100, $count)}% - #{$margin * 2}rem);
+		}
+
+		@if ($addmargin == true) {
+			margin: #{$margin}rem;
+		}
+	}
+}
+
+// применяет стили ко всем заголовкам
+@mixin headings {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@content;
+	}
+}
+
+@mixin offset($offset: 0) {
+	left: -$offset;
+	right: -$offset;
+	top: -$offset;
+	bottom: -$offset;
+	padding: $offset;
+}
+
+%fix-border-radius {
+	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+%text-overflow {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+%flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// максимум сторок текста
+@mixin max-rows($line-height, $rows, $only-height: false, $max-height: false) {
+	line-height: #{$line-height}rem;
+
+	@if ($max-height == false) {
+		height: #{$line-height * $rows}rem;
+	} @else {
+		max-height: #{$line-height * $rows}rem;
+	}
+
+	@if ($only-height == false) {
+		display: -webkit-box;
+		-webkit-line-clamp: $rows;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

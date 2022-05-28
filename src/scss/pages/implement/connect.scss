@@ -1,0 +1,201 @@
+.connect {
+	padding: 50rem 0;
+	position: relative;
+
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	@include from(769px) {
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 380rem;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+			pointer-events: none;
+			z-index: -1;
+		}
+	}
+
+	&__title {
+		text-align: center;
+		font-weight: 700;
+	}
+
+	&__content {
+		margin-top: 40rem;
+		@include to(980px) {
+			margin-top: 30rem;
+		}
+
+		@include to(768px) {
+			flex-flow: column nowrap;
+		}
+
+		@include to(580px) {
+			margin-top: 20rem;
+		}
+	}
+
+	&__cell {
+		width: 100%;
+
+		&_left {
+			max-width: 400rem;
+
+			@include to(1200px) {
+				max-width: 440rem;
+			}
+
+			@include to(980px) {
+				max-width: 380rem;
+			}
+
+			@include to(768px) {
+				max-width: 100%;
+			}
+		}
+
+		&_center {
+			max-width: 240rem;
+			min-height: 250rem;
+			position: relative;
+
+			@extend %flex-center;
+
+			@include to(768px) {
+				min-height: 150rem;
+				margin-top: 20rem;
+			}
+		}
+
+		&_right {
+			max-width: 340rem;
+
+			@include to(1200px) {
+				max-width: 400rem;
+			}
+
+			@include to(980px) {
+				max-width: 361rem;
+			}
+
+			@include to(768px) {
+				max-width: 100%;
+			}
+
+			@include from(1201px) {
+				.connect__item {
+					&:nth-child(1) {
+						margin-bottom: 87rem;
+					}
+				}
+			}
+		}
+	}
+
+	&__logo {
+		@include to(580rem) {
+			max-width: 120rem;
+		}
+		&-bg {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+			pointer-events: none;
+			z-index: -1;
+			@include to(1200px) {
+				transform: translateY(-50%) scale(1.3);
+			}
+
+			@include to(768px) {
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			@include to(580px) {
+				max-height: 130rem;
+			}
+		}
+	}
+
+	&__lines {
+		position: absolute;
+		top: 10rem;
+		@include to(1300px) {
+			display: none;
+		}
+
+		&_left {
+			left: -100rem;
+		}
+
+		&_right {
+			right: -100rem;
+		}
+	}
+
+	&__item {
+		&:not(:last-child) {
+			margin-bottom: 32rem;
+
+			@include to(580px) {
+				margin-bottom: 16rem;
+			}
+		}
+
+		&-label {
+			font-weight: 700;
+			line-height: 28rem;
+
+			@include to(580px) {
+				line-height: 24rem;
+				font-size: 16rem;
+			}
+		}
+
+		&-logos {
+			flex-flow: row wrap;
+			img {
+				margin-top: 15rem;
+				@include to(768px) {
+					max-height: 35rem;
+				}
+				@include to(580px) {
+					margin-top: 10rem;
+					max-height: 30rem;
+				}
+				&:not(:last-child) {
+					margin-right: 15rem;
+					@include to(580px) {
+						margin-right: 10rem;
+					}
+				}
+			}
+		}
+	}
+
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 55%;
+		transform: translateX(-50%);
+		height: 640rem;
+		width: 1000rem;
+		z-index: -2;
+		pointer-events: none;
+		@include to(1200px) {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		@include to(768px) {
+			display: none;
+		}
+	}
+}

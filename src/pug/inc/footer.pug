@@ -1,0 +1,32 @@
+-
+	var data = {
+		social: [
+			'whatsapp',
+			'viber',
+			'telegram',
+			'vk',
+			'inst',
+		]
+	};
+
++b.FOOTER.footer
+	.wrap
+		+e.row.flex._vertical._justify
+			+e.A.logo(href='/')
+				img(
+					src=`${imgPath}common/logo_white.svg`
+					alt='logo-image')
+			+e.NAV.links.flex._vertical
+				+e.A.link(href='tel:+78001234567') 8 (800) 123-45-67
+				+e.A.link(href='mailto:sales@lweb.pro') sales@lweb.pro
+		+e.row.flex._vertical._justify
+			+e.info.flex
+				p © 2021 Все права защищены
+				p ИНН: 1254896523254
+				p ОГРН: 5414589656321
+			+e.NAV.social.flex._vertical
+				each item in data.social
+					+e.A.social-link.flex(href='#')
+						img(
+							src=`${imgPath}/common/${item}.svg`
+							alt='social-icon')

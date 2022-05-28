@@ -1,0 +1,23 @@
+@include from(441px) {
+	@keyframes fillTheCircle {
+		0% {
+			stroke-dashoffset: calc(101 - ((0 / 100) * 101));
+		}
+
+		100% {
+			stroke-dashoffset: calc(101 - ((100 / 100) * 101));
+		}
+	}
+}
+
+@include to(440px) {
+	@keyframes fillTheCircle {
+		0% {
+			stroke-dashoffset: calc(120 - ((0 / 100) * 120));
+		}
+
+		100% {
+			stroke-dashoffset: calc(120 - ((100 / 100) * 120));
+		}
+	}
+}

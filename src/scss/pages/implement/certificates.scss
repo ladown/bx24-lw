@@ -1,0 +1,148 @@
+.certificates {
+	padding: 50rem 0 100rem 0;
+	overflow: hidden;
+
+	@include to(980px) {
+		padding-bottom: 75rem;
+	}
+
+	@include to(580px) {
+		padding: 30rem 0 50rem 0;
+	}
+
+	&__title {
+		text-align: center;
+		font-weight: 700;
+	}
+
+	&__slider {
+		margin-top: 40rem;
+
+		@include to(980px) {
+			margin-top: 30rem;
+		}
+
+		@include to(580rem) {
+			margin-top: 20rem;
+		}
+
+		&.swiper {
+			overflow: visible;
+		}
+	}
+
+	&__slide {
+		position: relative;
+		padding: 20rem;
+		min-height: 300rem;
+		border: 2px solid #ecedef;
+		border-radius: 32rem;
+
+		@include to(1200px) {
+			min-height: 400rem;
+		}
+
+		@include to(768px) {
+			width: calc((100% / 2) - 30px);
+		}
+
+		@include to(580px) {
+			min-height: 250rem;
+			max-height: 250rem;
+			border-radius: 16rem;
+			width: 250rem;
+		}
+
+		@extend %flex-center;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 70rem;
+			left: 20rem;
+			width: 250rem;
+			height: 240rem;
+			background: url($imgPath + 'backgrounds/certificates-bg.svg') center center / contain no-repeat;
+			z-index: -1;
+			pointer-events: none;
+
+			@include to(980px) {
+				width: 320rem;
+				height: 300rem;
+			}
+
+			@include to(580px) {
+				top: 55rem;
+				left: 10rem;
+				width: 210rem;
+				height: 200rem;
+			}
+		}
+
+		img {
+			display: block;
+			max-height: 100%;
+		}
+	}
+
+	&__partners {
+		margin-top: 80rem;
+
+		@include to(980px) {
+			margin-top: 60rem;
+		}
+
+		@include to(580px) {
+			margin-top: 40rem;
+		}
+
+		&-label {
+			width: 100%;
+			max-width: 630rem;
+			margin: 0 auto;
+			font-size: 24rem;
+			line-height: 1.5;
+			text-align: center;
+
+			@include to(980px) {
+				font-size: 20rem;
+				line-height: 1.3;
+			}
+
+			@include to(580px) {
+				font-size: 18rem;
+			}
+
+			br {
+				@include to(580px) {
+					display: none;
+				}
+			}
+		}
+
+		&-items {
+			margin: -12rem;
+			flex-flow: row wrap;
+
+			@include to(580px) {
+				margin: -10rem;
+			}
+		}
+
+		&-item {
+			margin: 12rem;
+			flex: 0 0 auto;
+			max-width: 192rem;
+
+			@include to(580px) {
+				max-width: 150rem;
+				margin: 10rem;
+			}
+
+			img {
+				display: block;
+				@include cover;
+			}
+		}
+	}
+}

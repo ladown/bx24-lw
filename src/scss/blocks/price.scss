@@ -1,0 +1,69 @@
+.price {
+	padding-bottom: 100rem;
+
+	@include to(980px) {
+		overflow: hidden;
+		padding-bottom: 75rem;
+	}
+
+	@include to(580px) {
+		padding-bottom: 50rem;
+	}
+
+	&_bg {
+		@include from(980px) {
+			position: relative;
+			&::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 1330rem;
+				height: 1060rem;
+				background: url($imgPath + 'backgrounds/price-bg.svg') center center / cover no-repeat;
+				z-index: -2;
+				pointer-events: none;
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -90rem;
+				left: 0;
+				width: 100%;
+				height: 440rem;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+				pointer-events: none;
+				z-index: -1;
+			}
+		}
+	}
+
+	&__title {
+		text-align: center;
+		font-weight: 700;
+		margin-top: 100rem;
+
+		@include to(980px) {
+			margin-top: 75rem;
+		}
+
+		@include to(580px) {
+			margin-top: 50rem;
+		}
+	}
+
+	&__slider {
+		margin-top: 50rem;
+
+		@include to(980px) {
+			margin-top: 40rem;
+			overflow: visible;
+		}
+
+		@include to(580px) {
+			margin-top: 30rem;
+		}
+	}
+}

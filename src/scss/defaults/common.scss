@@ -1,0 +1,118 @@
+.wrap {
+	padding: 0 20px;
+	width: 100%;
+	max-width: 1300px;
+	margin: auto;
+}
+
+html {
+	font-size: 1px;
+
+	@include to(1200px) {
+		font-size: #{div(100, div(1120, 0.7))}vw;
+	}
+
+	@include to(980px) {
+		font-size: 0.7px;
+	}
+
+	@include to(580px) {
+		font-size: 1px;
+	}
+
+	@include to(440px) {
+		font-size: #{div(100, div(375, 1))}vw;
+	}
+
+	&.js-lock {
+		overflow: hidden;
+		touch-action: none;
+	}
+}
+
+body {
+	position: relative;
+	font-family: 'Kamerik 105 Cyrillic', sans-serif;
+	font-weight: 350;
+	font-size: 18rem;
+	line-height: 1.15;
+	color: $black;
+
+	@include to(1200px) {
+		font-size: 20rem;
+	}
+
+	@include to(580px) {
+		font-size: 16rem;
+	}
+
+	&.js-lock {
+		overflow: hidden !important;
+		touch-action: none;
+	}
+}
+
+.icon {
+	width: 100%;
+}
+
+.flex {
+	display: flex;
+
+	&_center {
+		justify-content: center;
+	}
+
+	&_inline {
+		display: inline-flex;
+	}
+
+	&_justify {
+		justify-content: space-between;
+	}
+
+	&_left {
+		justify-content: flex-start;
+	}
+
+	&_right {
+		justify-content: flex-end;
+	}
+
+	&_start {
+		align-items: flex-start;
+	}
+
+	&_end {
+		align-items: flex-end;
+	}
+
+	&_vertical {
+		align-items: center;
+	}
+}
+
+.object-fit {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.mobile-hidden {
+	@include to(580px) {
+		display: none !important;
+	}
+}
+
+.tablet-hidden {
+	@include to(980px) {
+		display: none !important;
+	}
+}
+
+main.main-content {
+	overflow: hidden;
+}

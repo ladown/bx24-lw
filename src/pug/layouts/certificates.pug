@@ -1,0 +1,28 @@
+-
+	var data = {
+		title: 'Наши cертификаты',
+		label: 'Являемся официальными <br/>партнерами',
+	}
+	var certificatesCounter = 1;
+	var partnersCounter = 1;
+
++b.SECTION.certificates
+	.wrap
+		+e.H2.title.h2 Наши cертификаты
+		+e.slider.swiper
+			.swiper-wrapper
+				while certificatesCounter < 5
+					+e.slide.swiper-slide
+						img(
+							src=`${imgPath}certificates/cert-${certificatesCounter}.png`
+							alt='certificate-image')
+						- certificatesCounter++;
+		+e.partners
+			+e.partners-label !{ data.label }
+			+e.partners-items.flex._vertical._center
+				while partnersCounter < 5
+					+e.partners-item
+						img(
+							src=`${imgPath}/partners/partners-${partnersCounter}.png`
+							alt='partners-logo')
+						- partnersCounter++;

@@ -1,0 +1,17 @@
+doctype html
+
+include ../mixins/mixins-loader
+
+include settings
+block vars
+
+html(
+	dir='ltr'
+	lang='ru')
+	include head
+	body
+		include header
+		+b.MAIN.main-content
+			block content
+			include callback
+		include footer

@@ -1,0 +1,77 @@
++b.SECTION.contact
+	+e.wrap.wrap 
+		+e.header
+			+e.H2.title.h2 Готовы начать? <br/>Давайте созвонимся!
+			+e.P.subtitle 
+				| Чтобы наш первый разговор был более предметным, напишите, чем занимается ваша компания и&nbsp;
+				strong кратко расскажите о задачах,&nbsp;
+				| которые нужно решить.
+		+e.FORM.form(action='#')
+			+e.fields
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text Как Вас зовут
+					+b.INPUT.field._dark(
+						type='text'
+						name='name'
+						placeholder='Имя')
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text Контактный телефон
+					+b.INPUT.field._dark(
+						type='tel'
+						inputmode='tel'
+						name='phone'
+						placeholder='+7 ( ___ ) __-__ ___')
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text Электронная почта
+					+b.INPUT.field._dark(
+						type='email'
+						inputmode='email'
+						name='email'
+						placeholder='email@test.com')
+				+b.LABEL.label._dark._textarea.flex
+					+e.SPAN.text Расскажите кратко о задаче
+					+b.TEXTAREA.field._dark(
+						name='additional-info'
+						placeholder='Расскажите кратко о задаче')
+			+e.fields
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text Предпочтительный канал связи
+					+b.SELECT.field._dark._select(name='connect')
+						option(
+							disabled
+							selected) Выберите вариант
+						option(value='Голосовой звонок по телефону	Голосовой звонок по телефону') Голосовой звонок по телефону	Голосовой звонок по телефону
+						option(value='Email') Email
+						option(value='Viber,Telegramm') Viber,Telegramm
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text Когда удобно созвониться?
+					span.field__outer
+						+b.INPUT.field._dark._date(
+							type='date'
+							name='date')
+						img.field__icon(
+							src=`${imgPath}common/calendar.svg`
+							alt='calendar-icon')
+				+b.LABEL.label._dark.flex
+					+e.SPAN.text В какое время?
+					span.field__outer
+						+b.INPUT.field._dark._time(
+							type='text'
+							name='time'
+							placeholder='10:00')
+						img.field__icon(
+							src=`${imgPath}common/clock.svg`
+							alt='clock-icon')
+				+button({mods: ['green'], btn: true}) Отправить
+			+b.LABEL.checkbox._dark.flex._vertical
+				+e.INPUT.input(
+					type='checkbox'
+					name='policy')
+				+e.checkmark
+				+e.text
+					| Согласен на обработку&nbsp;
+					a(href='#') персональных данных
+		+e.img
+			img(
+				src=`${imgPath}contact/photo.svg`
+				alt='contact-photo')

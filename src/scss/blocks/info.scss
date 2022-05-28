@@ -1,0 +1,196 @@
+.info {
+	padding: 50rem 0;
+	@include to(580px) {
+		padding: 30rem 0;
+	}
+
+	&__wrap {
+		@include to(768px) {
+			flex-flow: column nowrap;
+		}
+	}
+
+	&__description {
+		width: calc((div(630, 1260) * 100%) - 10rem);
+		margin-right: 10px;
+
+		@include to(768px) {
+			width: 100%;
+			margin-right: 0;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+	}
+
+	&__subtitle {
+		width: 100%;
+		max-width: 540rem;
+		margin: 24rem 0 60rem 0;
+		font-size: 16rem;
+		line-height: 1.75;
+
+		@include to(980px) {
+			margin-top: 18rem;
+			margin-bottom: 40rem;
+		}
+
+		@include to(580px) {
+			margin-top: 12rem;
+			margin-bottom: 20rem;
+		}
+	}
+
+	&__slider {
+		margin-top: 45rem;
+
+		@include to(980px) {
+			margin-top: 30rem;
+		}
+	}
+
+	&__slide {
+		&-caption {
+			font-weight: 700;
+			font-size: 28rem;
+			line-height: 1;
+
+			@include to(980px) {
+				font-size: 24rem;
+			}
+
+			@include to(580px) {
+				font-size: 20rem;
+			}
+		}
+
+		&-text {
+			margin-top: 24rem;
+			font-size: 16rem;
+			line-height: 28rem;
+
+			@include to(980px) {
+				margin-top: 16rem;
+			}
+		}
+	}
+
+	&__progress {
+		flex-flow: row wrap;
+		margin-top: 16rem;
+
+		@include to(980px) {
+			margin-top: 10rem;
+		}
+
+		&-item {
+			cursor: pointer;
+			width: 40rem;
+			height: 40rem;
+			border-radius: 100%;
+			position: relative;
+			margin: 8rem 8rem 0 0 !important;
+			opacity: 1;
+			background-color: #fff;
+
+			@extend %flex-center;
+
+			@include to(980px) {
+				margin: 5rem 5rem 0 0 !important;
+			}
+
+			&:first-child {
+				.info__progress-line circle:nth-child(2) {
+					animation-delay: 0ms;
+				}
+			}
+
+			&:hover {
+				.info__progress-count {
+					color: $green;
+					transition: color 0.3s linear;
+				}
+			}
+		}
+
+		&-line {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform: rotate(275deg);
+
+			circle {
+				width: 100%;
+				height: 100%;
+				fill: none;
+				stroke: #ecedef;
+				stroke-width: 2;
+				stroke-linecap: round;
+				transition: all 0.3s linear;
+
+				&:nth-child(2) {
+					stroke-dasharray: 101;
+					stroke-dashoffset: calc(101 - ((0 / 100) * 101));
+					stroke: $green;
+					animation: fillTheCircle 3s 0.3s linear paused forwards;
+
+					@include to(440px) {
+						stroke-dasharray: 120;
+						stroke-dashoffset: calc(120 - ((0 / 100) * 120));
+					}
+				}
+			}
+		}
+
+		&-count {
+			padding-top: 2rem;
+			font-weight: 700;
+			font-size: 13rem;
+			line-height: 20rem;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
+			transition: color 0.3s linear;
+		}
+	}
+
+	&__link {
+		width: fit-content;
+		margin-top: 75rem;
+		font-size: 14rem;
+		line-height: 20rem;
+		text-decoration-line: underline;
+		transition: color 0.3s linear, text-decoration-line 0.3s linear;
+		@include to(980px) {
+			margin-top: 50rem;
+		}
+		@include to(580px) {
+			margin-top: 25rem;
+		}
+		&:hover {
+			color: $green;
+			transition: color 0.3s linear, text-decoration-line 0.3s linear;
+		}
+		span {
+			max-width: 350rem;
+			margin-right: 12rem;
+		}
+	}
+
+	&__img {
+		width: calc((div(630, 1260) * 100%) - 10rem);
+		margin-left: 10rem;
+		max-width: 624rem;
+		max-height: 583rem;
+		@include to(768px) {
+			width: 100%;
+			margin-left: 0;
+		}
+		img {
+			display: block;
+			@include cover;
+		}
+	}
+}

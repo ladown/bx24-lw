@@ -1,0 +1,17 @@
+mixin button(data = {})
+	if (data.btn)
+		+e.BUTTON.button.button__(class=`${data.mods ? `_${data.mods.join('')}` : ''}`)&attributes(attributes)
+			if block
+				+e.SPAN.block.flex
+					+e.SPAN.text
+						block
+					+e.SPAN.duplicate 
+						block
+	else
+		+e.A.button.button__(href=`${data.href ? data.href : '#'}` class=`${data.mods ? `_${data.mods.join('')}` : ''}`)&attributes(attributes)
+			if block
+				+e.SPAN.block.flex
+					+e.SPAN.text
+						block
+					+e.SPAN.duplicate 
+						block

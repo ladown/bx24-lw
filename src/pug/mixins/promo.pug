@@ -1,0 +1,20 @@
+mixin promo(data = {})
+	+b.SECTION.promo
+		.wrap
+			if data.title
+				+e.H1.title.h1 !{ data.title }
+			if data.subtitle
+				+e.P.subtitle !{ data.subtitle }
+			if data.btnText
+				+button({mods: ['promo']}).callback__open-btn
+					| #{ data.btnText }
+			if data.rows
+				+e.lines
+					each line in data.rows
+						+e.line.flex._vertical
+							each lineItem in line
+								+e.line-item #{ lineItem }
+		+e.bg
+			img(
+				alt='background-image'
+				src=`${imgPath}backgrounds/promo-bg.svg`)
