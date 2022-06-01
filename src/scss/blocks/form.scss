@@ -34,17 +34,11 @@
 			border-color: rgba(255, 255, 255, 0.1);
 		}
 
-		&:not(select) {
-			color: rgba(255, 255, 255, 0.4);
-			&:focus {
-				color: #fff;
-				border-color: #fff;
-				transition: border 0.3s linear, color 0.3s linear;
-			}
-		}
-
-		&.field_select {
+		color: rgba(255, 255, 255, 0.4);
+		&:focus {
 			color: #fff;
+			border-color: #fff;
+			transition: border 0.3s linear, color 0.3s linear;
 		}
 	}
 
@@ -56,14 +50,12 @@
 			border-color: #ecedef;
 		}
 
-		&:not(select) {
-			color: #848a97;
+		color: #848a97;
 
-			&:focus {
-				color: $black;
-				border-color: $black;
-				transition: border 0.3s linear, color 0.3s linear;
-			}
+		&:focus {
+			color: $black;
+			border-color: $black;
+			transition: border 0.3s linear, color 0.3s linear;
 		}
 	}
 
@@ -96,14 +88,6 @@
 		top: 50%;
 		transform: translateY(-50%);
 		fill: transparent;
-	}
-
-	&_select {
-		padding-right: 40rem;
-		background-image: url($imgPath + 'common/arrowDown.svg');
-		background-size: 16rem 16rem;
-		background-position: calc(100% - 16rem) 50%;
-		background-repeat: no-repeat;
 	}
 
 	&_date {

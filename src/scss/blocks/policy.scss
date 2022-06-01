@@ -1,0 +1,64 @@
+.policy {
+	padding: 150rem 0 100rem 0;
+
+	@include to(980px) {
+		padding: 125rem 0 75rem 0;
+	}
+
+	@include to(580px) {
+		padding: 100rem 0 50rem 0;
+	}
+
+	&__title {
+		text-align: center;
+
+		@include to(580px) {
+			font-size: 26rem;
+		}
+	}
+
+	&__content {
+		margin-top: 80rem;
+		letter-spacing: 0.02em;
+
+		@include to(980px) {
+			margin-top: 60rem;
+		}
+
+		@include to(580px) {
+			margin-top: 40rem;
+		}
+
+		h2 {
+			margin-top: 50rem;
+			font-size: 32rem;
+			line-height: 1.2;
+
+			@include to(980px) {
+				margin-top: 40rem;
+				font-size: 24rem;
+			}
+
+			@include to(580px) {
+				margin-top: 30rem;
+				font-size: 18rem;
+			}
+		}
+
+		p {
+			margin-top: 25rem;
+			font-size: 20rem;
+			line-height: 1.3;
+
+			@include to(980px) {
+				margin-top: 20rem;
+				font-size: 16rem;
+			}
+
+			@include to(580px) {
+				margin-top: 15rem;
+				font-size: 14rem;
+			}
+		}
+	}
+}

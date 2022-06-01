@@ -1,6 +1,9 @@
 .certificates {
 	padding: 50rem 0 100rem 0;
 	overflow: hidden;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1500px;
 
 	@include to(980px) {
 		padding-bottom: 75rem;
@@ -43,7 +46,7 @@
 		}
 
 		@include to(768px) {
-			width: calc((100% / 2) - 30px);
+			width: calc((100% / 2) - 30rem);
 		}
 
 		@include to(580px) {

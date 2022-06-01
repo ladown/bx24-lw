@@ -1,25 +1,25 @@
-const pugFiles = require("./pugPages")();
+const pugFiles = require('./pugPages')();
 
-let folder = __dirname.replace("webpack", "").trim().split("/");
-let projectName = folder[folder.length - 2].replace("-", " ").replace("_", " ").toLowerCase();
+let folder = __dirname.replace('webpack', '').trim().split('/');
+let projectName = folder[folder.length - 2].replace('-', ' ').replace('_', ' ').toLowerCase();
 let formatedProjectName = `${projectName[0].toUpperCase() + projectName.slice(1)}`;
 
 const generatingPageList = () => {
-  let list = "<ol>";
-  pugFiles.forEach((pageName) => {
-    if (!pageName.includes("index")) {
-      let name = `${pageName.replace(".pug", "")[0].toUpperCase() + pageName.replace(".pug", "").slice(1)} page`;
-      list += `<li><a href="/${pageName.replace(".pug", ".html")}" target="_blank"> ${name}</a></li>`;
-    }
-  });
+	let list = '<ol>';
+	pugFiles.forEach((pageName) => {
+		if (!pageName.includes('index')) {
+			let name = `${pageName.replace('.pug', '')[0].toUpperCase() + pageName.replace('.pug', '').slice(1)} page`;
+			list += `<li><a href="/${pageName.replace('.pug', '.html')}" target="_blank"> ${name}</a></li>`;
+		}
+	});
 
-  list += "</ol>";
+	list += '</ol>';
 
-  return list;
+	return list;
 };
 
 const generateTemplaet = () => {
-  return `doctype html
+	return `doctype html
   \nhtml(lang="ru")
     head
       title Список всех старниц

@@ -2,9 +2,10 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	right: 0;
+	// width: 100%;
 	padding-top: 50rem;
-	transition: padding 0.3s linear, background 0.3s linear;
+	transition: padding-top 0.3s linear, padding-bottom 0.3s linear, background 0.3s linear;
 	z-index: 2;
 
 	@include to(580px) {
@@ -154,12 +155,9 @@
 		span {
 			display: block;
 			width: 100%;
-			height: 3px;
+			height: 2px;
 			background-color: $black;
 			border-radius: 100rem;
-			@include to(580px) {
-				height: 2px;
-			}
 		}
 
 		&::before,

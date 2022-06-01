@@ -1,0 +1,15 @@
+mixin select(data = {})
+	+e.select.select__(class=`${data.mods ? `_${data.mods.join('')}` : ''}`)&attributes(attributes)
+		+e.INPUT.input(
+			type='hidden'
+			name=data.nameInput
+			value=''
+			data-select='input')
+		+e.head.flex._vertical._justify
+			if data.placeholder
+				+e.value #{ data.placeholder }
+			+icon('arrow', '0 0 16 16').select__arrow
+		if data.options
+			+e.options.flex
+				each option in data.options
+					+e.option #{ option }

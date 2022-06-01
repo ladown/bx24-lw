@@ -98,6 +98,7 @@
 		}
 
 		@include to(580px) {
+			max-width: auto;
 			grid-column: initial;
 			grid-row: initial;
 		}
@@ -120,20 +121,26 @@
 	}
 
 	&__img {
+		overflow: hidden;
 		display: none;
 		position: absolute;
 		top: 30rem;
-		right: -10rem;
+		right: 0;
 		pointer-events: none;
 		z-index: -1;
+		width: 463rem;
+		height: 547rem;
 
 		@include to(1200px) {
+			height: 590rem;
+			width: 510rem;
 			top: -30rem;
-			right: -30rem;
 		}
 
 		@include to(980px) {
-			right: -60rem;
+			width: auto;
+			height: auto;
+			right: 0;
 		}
 
 		@include from(581px) {
@@ -144,11 +151,15 @@
 			display: none;
 			content: '';
 			position: absolute;
-			bottom: 30rem;
-			right: -50rem;
-			width: 463rem;
-			height: 547rem;
+			bottom: 0;
+			right: -100rem;
+			width: 100%;
+			height: 100%;
 			background: url($imgPath + 'backgrounds/contact-bg.svg') center center / cover no-repeat;
+
+			@include to(1200px) {
+				right: -30rem;
+			}
 
 			@include from(980px) {
 				display: block;
@@ -156,10 +167,15 @@
 		}
 
 		img {
+			display: block;
 			width: 260rem;
 			height: 507rem;
 
-			@include to(1200px) {
+			@include from(981px) {
+				margin-left: auto;
+			}
+
+			@include from-to(980px, 1200px) {
 				width: 300rem;
 				height: 583rem;
 			}

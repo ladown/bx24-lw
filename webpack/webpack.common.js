@@ -17,7 +17,7 @@ module.exports = {
 
 	output: {
 		path: paths.build.default,
-		filename: 'js/[name].js',
+		filename: './js/[name].js',
 		clean: true,
 	},
 
@@ -32,8 +32,8 @@ module.exports = {
 					from: paths.src.imgs,
 					to: paths.build.imgs,
 					globOptions: {
-						ignore: ['backgrounds/*.*'],
-						// ignore: ['backgrounds/*.*', 'favicons/*.*'],
+						// ignore: ['backgrounds/*.*'],
+						ignore: ['backgrounds/*.*', 'favicons/*.*'],
 					},
 				},
 			],
@@ -78,6 +78,9 @@ module.exports = {
 			{
 				test: /\.pug$/,
 				loader: '@webdiscus/pug-loader',
+				options: {
+					pretty: true,
+				},
 			},
 
 			{

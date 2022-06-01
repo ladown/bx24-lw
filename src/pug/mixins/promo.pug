@@ -1,5 +1,5 @@
 mixin promo(data = {})
-	+b.SECTION.promo
+	+b.SECTION.promo&attributes(attributes)
 		.wrap
 			if data.title
 				+e.H1.title.h1 !{ data.title }

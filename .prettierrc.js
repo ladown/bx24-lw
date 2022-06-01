@@ -13,5 +13,4 @@ module.exports = {
 	pugUseTabs: true,
 	pugAttributeSeparator: 'none',
 	pugWrapAttributesThreshold: 1,
-	pugSingleFileComponentIndentation: true,
 };

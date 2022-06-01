@@ -13,6 +13,7 @@ module.exports = merge(commonOptions, {
 
 	entry: {
 		vendor: `${paths.src.vendors}/vendor.js`,
+		// vendor: ['swiper', 'scrollama', 'imask', 'jquery'],
 		common: `${paths.src.vendors}/common.js`,
 		main: ['@babel/polyfill', `${paths.src.scripts}/index.js`],
 	},
@@ -28,7 +29,7 @@ module.exports = merge(commonOptions, {
 
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: ({ chunk }) => `css/${chunk.name.replace('/js/', '/css/')}.css`,
+			filename: ({ chunk }) => `./css/${chunk.name.replace('/js/', '/css/')}.css`,
 		}),
 
 		new HookPlugin('RunSvgSpriteGenerator', 'node ./webpack/svgSprite.js', 'beforeRun'),
@@ -36,6 +37,7 @@ module.exports = merge(commonOptions, {
 
 	optimization: {
 		minimizer: [
+			'...',
 			new ImageMinimizerPlugin({
 				test: /.(jpe?g|png|gif|svg)$/i,
 				exclude: /(sprite\.svg|favicons)/,
@@ -51,6 +53,19 @@ module.exports = merge(commonOptions, {
 					},
 				},
 			}),
+			'...',
 		],
+		// splitChunks: {
+		// 	cacheGroups: {
+		// 		// match the entry point and spit out the file named here
+		// 		vendor: {
+		// 			chunks: 'initial',
+		// 			name: 'vendor',
+		// 			test: 'vendor',
+		// 			filename: 'vendor.js',
+		// 			enforce: true,
+		// 		},
+		// 	},
+		// },
 	},
 });

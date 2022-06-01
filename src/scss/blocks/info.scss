@@ -12,7 +12,7 @@
 
 	&__description {
 		width: calc((div(630, 1260) * 100%) - 10rem);
-		margin-right: 10px;
+		margin-right: 10rem;
 
 		@include to(768px) {
 			width: 100%;
@@ -102,7 +102,8 @@
 
 			&:first-child {
 				.info__progress-line circle:nth-child(2) {
-					animation-delay: 0ms;
+					animation-duration: 2.4s;
+					animation-delay: 0;
 				}
 			}
 
@@ -135,7 +136,7 @@
 					stroke-dasharray: 101;
 					stroke-dashoffset: calc(101 - ((0 / 100) * 101));
 					stroke: $green;
-					animation: fillTheCircle 3s 0.3s linear paused forwards;
+					animation: fillTheCircle 2.7s 0.3s linear paused forwards;
 
 					@include to(440px) {
 						stroke-dasharray: 120;

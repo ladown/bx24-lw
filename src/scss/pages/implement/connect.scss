@@ -42,6 +42,15 @@
 
 	&__cell {
 		width: 100%;
+		flex-flow: column nowrap;
+
+		&:not(.connect__cell_center) {
+			@include from-to(581px, 768px) {
+				flex-flow: row wrap;
+				justify-content: center;
+				@include items(2, 15);
+			}
+		}
 
 		&_left {
 			max-width: 400rem;
@@ -66,8 +75,15 @@
 
 			@extend %flex-center;
 
+			@include from-to(581px, 768px) {
+				margin: 20rem 0;
+			}
+
 			@include to(768px) {
 				min-height: 150rem;
+			}
+
+			@include to(580px) {
 				margin-top: 20rem;
 			}
 		}
@@ -109,7 +125,7 @@
 			pointer-events: none;
 			z-index: -1;
 			@include to(1200px) {
-				transform: translateY(-50%) scale(1.3);
+				transform: translateY(-50%) scale(1.15);
 			}
 
 			@include to(768px) {
@@ -140,8 +156,18 @@
 	}
 
 	&__item {
+		@include from-to(581px, 768px) {
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: center;
+		}
+
 		&:not(:last-child) {
 			margin-bottom: 32rem;
+
+			@include from-to(581px, 768px) {
+				margin-bottom: 15rem;
+			}
 
 			@include to(580px) {
 				margin-bottom: 16rem;
@@ -162,6 +188,7 @@
 			flex-flow: row wrap;
 			img {
 				margin-top: 15rem;
+				max-height: 40rem;
 				@include to(768px) {
 					max-height: 35rem;
 				}
@@ -176,6 +203,18 @@
 					}
 				}
 			}
+		}
+	}
+
+	&__label {
+		margin-top: 25rem;
+		font-size: 18rem;
+		line-height: 2;
+		text-align: center;
+
+		@include to(580px) {
+			font-size: 16rem;
+			margin-top: 15rem;
 		}
 	}
 

@@ -6,51 +6,43 @@
 	}
 
 	&__content {
-		overflow: hidden;
-		max-height: 550rem;
 		position: relative;
 
-		@include to(980px) {
-			max-height: unset;
+		@include to(768px) {
 			flex-flow: column nowrap;
-		}
-
-		@include from(981px) {
-			&::before {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				width: 100%;
-				height: 280rem;
-				background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-				z-index: 1;
-				pointer-events: none;
-				transition: opacity 0.3s linear;
-			}
 		}
 	}
 
 	&__title {
 		font-weight: 700;
-		flex: 0 0 410rem;
+
+		flex: 0 0 400rem;
 
 		@include to(980px) {
+			flex: 0 0 350rem;
+		}
+
+		@include from(769px) {
+			position: sticky;
+			top: 0;
+		}
+
+		@include to(768px) {
 			flex: 1;
 		}
 	}
 
 	&__items {
-		position: relative;
+		margin-left: auto;
 		overflow: hidden;
-		flex: 0 0 660rem;
+		flex: 0 1 660rem;
+		transition: transform 0.3s linear;
 
 		@include to(1200px) {
 			flex-basis: 760rem;
 		}
 
-		@include to(980px) {
+		@include to(768px) {
 			flex: 1;
 			margin-top: 20rem;
 		}
@@ -63,36 +55,58 @@
 			margin-bottom: 60rem;
 
 			@include to(980px) {
+				margin-bottom: 40rem;
+			}
+
+			@include to(580px) {
 				margin-bottom: 20rem;
 			}
 
-			@include from(981px) {
-				.integration__item-counter {
-					&::before,
-					&::after {
-						content: '';
-						width: 2px;
-						position: absolute;
-						top: 0;
-						left: 20rem;
-						z-index: -1;
+			.integration__item-counter {
+				&::before,
+				&::after {
+					content: '';
+					width: 2px;
+					position: absolute;
+					top: 0;
+					left: calc(20rem - 1px);
+					z-index: -1;
+
+					@include to(580px) {
+						left: calc(15rem - 1px);
+					}
+				}
+
+				&::before {
+					height: calc(100% + 60rem);
+					background-color: #ecedef;
+
+					@include to(980px) {
+						height: calc(100% + 40rem);
 					}
 
-					&::before {
-						height: calc(100% + 60rem);
-						background-color: #ecedef;
+					@include to(580px) {
+						height: calc(100% + 20rem);
+					}
+				}
+
+				&::after {
+					height: 0;
+					background-color: $green;
+					transition: height 0.3s linear;
+
+					@include to(768px) {
+						height: calc(100% + 40rem);
 					}
 
-					&::after {
-						height: 0;
-						background-color: $green;
-						transition: height 0.3s linear;
+					@include to(580px) {
+						height: calc(100% + 20rem);
 					}
 				}
 			}
 		}
 
-		@include from(981px) {
+		@include from(769px) {
 			&.is-active {
 				.integration__item-counter {
 					border-color: $green;
@@ -106,6 +120,14 @@
 						&::after {
 							height: calc(100% + 60rem);
 							transition: height 0.3s linear;
+
+							@include to(980px) {
+								height: calc(100% + 40rem);
+							}
+
+							@include to(580px) {
+								height: calc(100% + 20rem);
+							}
 						}
 					}
 				}
@@ -115,13 +137,13 @@
 		&-description {
 			margin-top: 10rem;
 			position: relative;
-			flex: 0 0 520rem;
+			flex: 0 1 520rem;
 
 			@include to(1200px) {
-				flex-basis: 620rem;
+				flex-basis: 700rem;
 			}
 
-			@include to(980px) {
+			@include to(768px) {
 				flex: 1;
 			}
 
@@ -144,6 +166,13 @@
 
 			@include to(980px) {
 				line-height: 24rem;
+			}
+
+			@include to(768px) {
+				border-color: $green;
+				background-color: $green;
+				color: #fff;
+				transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
 			}
 
 			@include to(580px) {

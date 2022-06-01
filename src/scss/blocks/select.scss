@@ -1,0 +1,112 @@
+.select {
+	position: relative;
+
+	&__head {
+		cursor: pointer;
+		min-height: 58rem;
+		max-height: 58rem;
+		border-radius: 12rem;
+		width: 100%;
+		font-size: 14rem;
+		line-height: 2;
+		padding: 15rem 16rem 14rem 16rem;
+		color: rgba(255, 255, 255, 0.4);
+		border: 2px solid rgba(255, 255, 255, 0.1);
+		transition: border 0.3s linear, color 0.3s linear, border-radius 0.3s linear;
+
+		@include to(580px) {
+			min-height: 50rem;
+			max-height: 50rem;
+			padding: 11rem 16rem 10rem 16rem;
+		}
+
+		.is-filled &,
+		.is-opened & {
+			color: #fff;
+			border-color: #fff;
+			transition: border 0.3s linear, color 0.3s linear, border-radius 0.3s linear;
+		}
+
+		.is-opened & {
+			border-radius: 12rem 12rem 0 0;
+		}
+	}
+
+	&__value {
+		flex: 1;
+		pointer-events: none;
+
+		@extend %text-overflow;
+	}
+
+	&__arrow {
+		pointer-events: none;
+		fill: transparent;
+		stroke: #fff;
+		stroke-width: 2;
+		stroke-linecap: round;
+		margin-left: 10rem;
+		width: 16rem;
+		flex: 0 0 16rem;
+		transition: transform 0.3s linear;
+
+		.is-opened & {
+			transform: rotate(180deg);
+			transition: transform 0.3s linear;
+		}
+	}
+
+	&__options {
+		display: none;
+		opacity: 0;
+		overflow: hidden;
+		flex-flow: column nowrap;
+		border-radius: 12rem;
+		position: absolute;
+		left: 0;
+		top: calc(100% - 2px);
+		width: 100%;
+		max-height: 200rem;
+		border: 2px solid #fff;
+		border-radius: 0 0 12rem 12rem;
+		background-color: $black;
+		overflow-y: auto;
+		z-index: 2;
+		transform: translateY(50rem);
+
+		@include to(980px) {
+			max-height: 150rem;
+		}
+	}
+
+	&__option {
+		cursor: pointer;
+		padding: 10rem 16rem;
+		background-color: $black;
+		color: rgba(255, 255, 255, 0.4);
+		font-weight: normal;
+		font-size: 12rem;
+		line-height: 1.5;
+		transition: color 0.3s linear;
+
+		@include from-to(981px, 1200px) {
+			font-size: 13rem;
+		}
+
+		@include to(980px) {
+			padding: 10px 12px;
+		}
+
+		&:not(.is-active) {
+			&:hover {
+				color: #fff;
+				transition: color 0.3s linear;
+			}
+		}
+
+		&.is-active {
+			color: $green;
+			transition: color 0.3s linear;
+		}
+	}
+}

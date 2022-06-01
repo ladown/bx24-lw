@@ -1,8 +1,6 @@
 'use strict';
 
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
 
 import Swiper, { Pagination, Autoplay } from 'swiper';
 import 'swiper/css';
@@ -26,21 +24,74 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		lock() {
 			this.node.classList.add(this.mod);
+
+			const paddingRight =
+				parseInt(window.getComputedStyle(this.node, null).getPropertyValue('padding-right'), 10) +
+				this.getScrollbarWidth() * 1;
+			this.node.style.paddingRight = `${paddingRight}px`;
+			document.querySelector('header.header').style.paddingRight = `${paddingRight}px`;
 		},
 
 		unlock() {
 			this.node.classList.remove(this.mod);
+			this.node.style.paddingRight = '';
+			document.querySelector('header.header').style.paddingRight = '';
+		},
+
+		getScrollbarWidth() {
+			let w = window,
+				d = document,
+				e = d.documentElement,
+				g = d.getElementsByTagName('body')[0],
+				h = d.getElementsByTagName('html')[0],
+				wHeght = w.innerHeight || e.clientHeight || g.clientHeight,
+				dHeight = Math.max(
+					g.scrollHeight,
+					g.offsetHeight,
+					g.getBoundingClientRect().height,
+					h.clientHeight,
+					h.scrollHeight,
+					h.offsetHeight,
+				);
+
+			if (dHeight <= wHeght) {
+				return 0;
+			}
+
+			let outer = document.createElement('div');
+			let inner = document.createElement('div');
+			let widthNoScroll;
+			let widthWithScroll;
+
+			outer.style.visibility = 'hidden';
+			outer.style.width = '100px';
+			document.body.appendChild(outer);
+
+			widthNoScroll = outer.offsetWidth;
+
+			// Force scrollbars
+			outer.style.overflow = 'scroll';
+
+			// Add inner div
+			inner.style.width = '100%';
+			outer.appendChild(inner);
+
+			widthWithScroll = inner.offsetWidth;
+
+			// Remove divs
+			outer.parentNode.removeChild(outer);
+
+			return widthNoScroll - widthWithScroll;
 		},
 	};
 
 	const AnimationOnEnterPage = {
 		variables: {
-			linesBottom: window.innerWidth >= 981 ? '100rem' : '55rem',
+			linesBottom: null,
 			linesOffset: {
-				first: window.innerWidth >= 1921 ? '-100rem' : '-200rem',
-				second: window.innerWidth >= 1921 ? '1000rem' : '640rem',
+				first: null,
+				second: null,
 			},
-			observer: null,
 		},
 
 		nods: {
@@ -49,26 +100,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			lines: document.querySelector('.promo__lines'),
 			firstLine: document.querySelector('.promo__line:nth-child(1)'),
 			secondLine: document.querySelector('.promo__line:nth-child(2)'),
-		},
-
-		setObserver() {
-			this.variables.observer = new IntersectionObserver((entries, obs) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						Body.node.style.pointerEvents = 'none';
-						Body.lock();
-					} else {
-						this.unsetObserver();
-					}
-
-					this.setAnimation();
-				});
-			});
-			this.variables.observer.observe(this.nods.wrap);
-		},
-
-		unsetObserver() {
-			this.variables.observer.disconnect();
 		},
 
 		setAnimation() {
@@ -95,9 +126,42 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 		},
 
+		setVariables(event = false) {
+			if (event) {
+				this.variables.linesBottom = event.target.innerWidth >= 981 ? '100rem' : '55rem';
+				this.variables.linesOffset.first = event.target.innerWidth >= 1921 ? '-100rem' : '-200rem';
+				this.variables.linesOffset.second = event.target.innerWidth >= 1921 ? '1000rem' : '640rem';
+			} else {
+				this.variables.linesBottom = window.innerWidth >= 981 ? '100rem' : '55rem';
+				this.variables.linesOffset.first = window.innerWidth >= 1921 ? '-100rem' : '-200rem';
+				this.variables.linesOffset.second = window.innerWidth >= 1921 ? '1000rem' : '640rem';
+			}
+		},
+
+		changeOnResize() {
+			window.addEventListener('resize', (event) => {
+				this.setVariables(event);
+
+				if (this.nods.lines) {
+					this.nods.lines.style.bottom = this.variables.linesBottom;
+					this.nods.firstLine.style.transform = `translate(${this.variables.linesOffset.first}, 0px)`;
+					this.nods.secondLine.style.transform = `translate(${this.variables.linesOffset.second}, 0px)`;
+				}
+			});
+		},
+
 		init() {
 			if (this.nods.wrap) {
-				this.setObserver();
+				this.setVariables();
+
+				if (isInViewport(this.nods.wrap)) {
+					Body.node.style.pointerEvents = 'none';
+					Body.lock();
+				}
+
+				this.setAnimation();
+
+				this.changeOnResize();
 			}
 		},
 	};
@@ -183,7 +247,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const ProblemSlider = {
 		variables: {
+			isInit: false,
 			circlSelector: 'circle:nth-child(2)',
+			slider: null,
 		},
 
 		nodes: {
@@ -195,12 +261,29 @@ window.addEventListener('DOMContentLoaded', () => {
 			el.style.animationPlayState = 'running';
 		},
 
+		isInViewport() {
+			if (isInViewport(ProblemSlider.nodes.slider)) {
+				ProblemSlider.variables.slider.enable();
+				const circle = ProblemSlider.variables.slider.pagination.bullets[0].querySelector(
+					ProblemSlider.variables.circlSelector,
+				);
+				ProblemSlider.startAnimation(circle);
+				ProblemSlider.variables.slider.autoplay.start();
+				window.removeEventListener('scroll', ProblemSlider.isInViewport);
+			}
+		},
+
+		setObserver() {
+			window.addEventListener('scroll', this.isInViewport);
+		},
+
 		setSlider() {
-			new Swiper(this.nodes.slider, {
+			this.variables.slider = new Swiper(this.nodes.slider, {
+				enabled: false,
 				slidesPerView: 1,
 				modules: [Pagination, Autoplay],
 				autoplay: {
-					delay: 3000,
+					delay: 2700,
 					disableOnInteraction: false,
 					stopOnLastSlide: true,
 				},
@@ -220,93 +303,29 @@ window.addEventListener('DOMContentLoaded', () => {
 					},
 				},
 				on: {
-					autoplayStart: (swiper) => {
-						const circle = swiper.pagination.bullets[swiper.activeIndex].querySelector(this.variables.circlSelector);
-						this.startAnimation(circle);
+					init: (swiper) => {
+						swiper.autoplay.stop();
 					},
 					slideChange: (swiper) => {
-						const circle = swiper.pagination.bullets[swiper.activeIndex].querySelector(this.variables.circlSelector);
-						this.startAnimation(circle);
-						swiper.autoplay.start();
+						if (swiper.enabled) {
+							const circle = swiper.pagination.bullets[swiper.activeIndex].querySelector(this.variables.circlSelector);
+							this.startAnimation(circle);
+							swiper.autoplay.start();
+						}
 					},
 				},
 			});
 		},
 
 		init() {
-			if (this.nodes) {
+			if (this.nodes.slider) {
+				this.setObserver();
 				this.setSlider();
 			}
 		},
 	};
 
 	ProblemSlider.init();
-
-	const IntegrationSection = {
-		variables: {
-			pixelsToScroll: null,
-		},
-
-		nodes: {
-			wrap: document.querySelector('.integration__content'),
-			blockToScroll: document.querySelector('.integration__items'),
-			blocks: document.querySelectorAll('.integration__item'),
-		},
-
-		mods: 'is-active',
-
-		setVariables() {
-			this.variables.pixelsToScroll = Math.ceil(
-				document.querySelector('.integration__content').offsetHeight / 2 - this.nodes.blockToScroll.offsetHeight,
-			);
-		},
-
-		setScrollForSection() {
-			const timeLine = gsap.timeline({
-				scrollTrigger: {
-					trigger: this.nodes.blockToScroll,
-					start: `top -=${this.variables.pixelsToScroll}`,
-					end: `bottom -=${this.variables.pixelsToScroll / 2}`,
-					scrub: true,
-				},
-			});
-
-			timeLine.to(this.nodes.blockToScroll, {
-				y: `${this.variables.pixelsToScroll}px`,
-			});
-		},
-
-		setActiveItem() {
-			const scroller = scrollama();
-
-			scroller
-				.setup({
-					step: '.integration__item',
-					offset: `${-this.variables.pixelsToScroll}px`,
-				})
-				.onStepEnter((response) => {
-					const { element } = response;
-					element.classList.add(this.mods);
-				})
-				.onStepExit((response) => {
-					const { element, index, direction } = response;
-					if (direction !== 'down' && index !== 0) {
-						element.classList.remove(this.mods);
-					}
-				});
-		},
-
-		init() {
-			if (this.nodes.blockToScroll && window.innerWidth >= 981) {
-				this.setVariables();
-				this.setScrollForSection();
-
-				this.setActiveItem();
-			}
-		},
-	};
-
-	IntegrationSection.init();
 
 	const CertificatesSlider = {
 		node: '.certificates__slider',
@@ -367,26 +386,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		setPhoneMask() {
 			this.nodes.phoneInput.forEach((input) => {
 				IMask(input, {
-					mask: [
-						{
-							mask: '0 (000) 000-00-00',
-							startsWith: '8',
-							lazy: false,
-						},
-						{
-							mask: '+0 (000) 000-00-00',
-							startsWith: '7',
-							lazy: false,
-						},
-					],
-
-					dispatch: (appended, dynamicMasked) => {
-						var number = (dynamicMasked.value + appended).replace(/\D/g, '');
-
-						return dynamicMasked.compiledMasks.find(function (m) {
-							return number.indexOf(m.startsWith) === 0;
-						});
-					},
+					mask: '0 (000) 000-00-00',
 				});
 			});
 		},
@@ -411,7 +411,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		},
 
 		nodes: {
-			forms: [document.querySelector('.contact__form'), document.querySelector('.callback__form')],
+			forms: [],
 		},
 
 		mods: {
@@ -437,7 +437,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		},
 
 		formValidation(input) {
-			console.log(input);
 			let numberOfErrors = 0;
 
 			if (!input.checked) {
@@ -454,7 +453,6 @@ window.addEventListener('DOMContentLoaded', () => {
 				form.addEventListener('submit', (event) => {
 					event.preventDefault();
 					const countOfErrors = this.formValidation(checkbox);
-					console.log(countOfErrors);
 
 					if (countOfErrors === 0) {
 						console.log('We can send form there');
@@ -463,10 +461,22 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 		},
 
+		setFormNodes() {
+			const formsSelectors = ['.contact__form', '.callback__form'];
+			formsSelectors.forEach((formSelector) => {
+				const form = document.querySelector(formSelector);
+
+				if (form) {
+					this.nodes.forms.push(form);
+				}
+			});
+		},
+
 		init() {
+			this.setFormNodes();
+
 			if (this.nodes.forms.length) {
 				this.setFilled();
-
 				this.formListener();
 			}
 		},
@@ -560,8 +570,15 @@ window.addEventListener('DOMContentLoaded', () => {
 		},
 
 		closeModal() {
-			Body.unlock();
-			gsap.to(this.nodes.modal, { display: 'none', opacity: 0, duration: 0.3, ease: 'linear' });
+			gsap.to(this.nodes.modal, {
+				display: 'none',
+				opacity: 0,
+				duration: 0.3,
+				ease: 'linear',
+				onComplete: () => {
+					Body.unlock();
+				},
+			});
 		},
 
 		setListenerForTrigger() {
@@ -582,7 +599,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		setListenerForModal() {
 			this.nodes.modal.addEventListener('click', (event) => {
-				console.log(event.target);
 				if (
 					event.target &&
 					(event.target.classList.contains('callback__overlay') || event.target.classList.contains('callback__close'))
@@ -602,4 +618,253 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 
 	Modal.init();
+
+	const ScrollSection = {
+		variables: {
+			scroller: scrollama(),
+			isActivated: true,
+		},
+
+		nods: {
+			wrap: document.querySelector('.integration'),
+			title: document.querySelector('.integration__title'),
+			itemsWrap: document.querySelector('.integration__items'),
+			items: document.querySelectorAll('.integration__item'),
+		},
+
+		mods: 'is-active',
+
+		handleResize() {
+			const titleHeight =
+				this.nods.title.offsetHeight < this.nods.items[this.nods.items.length - 1].offsetHeight
+					? this.nods.items[this.nods.items.length - 1].offsetHeight + 10
+					: this.nods.title.offsetHeight;
+			const titleTopOffset = window.innerHeight / 2 - titleHeight / 2;
+
+			this.nods.title.style.cssText = `
+				height: ${titleHeight}px;
+				top: ${titleTopOffset}px;
+			`;
+
+			this.variables.scroller.resize();
+		},
+
+		handleStepEnter(response) {
+			const { index, direction } = response;
+
+			if (direction === 'down') {
+				this.nods.items[index].classList.add(this.mods);
+
+				if (index > 1 && this.variables.isActivated) {
+					this.nods.items.forEach((el, idx) => {
+						if (idx < index) {
+							el.classList.add(this.mods);
+
+							this.variables.isActivated = false;
+						}
+					});
+				}
+			}
+		},
+
+		handleStepLeave(response) {
+			const { index, direction } = response;
+
+			if (direction === 'up' && index !== 0) {
+				this.nods.items[response.index].classList.remove(this.mods);
+			}
+		},
+
+		setOnResize() {
+			window.addEventListener('resize', (event) => {
+				if (event.target.innerWidth <= 768) {
+					this.variables.scroller.disable();
+				} else {
+					this.handleResize();
+					this.variables.scroller.enable();
+				}
+			});
+		},
+
+		setPreviousItems() {
+			if (this.variables.activeItem !== 0 && this.variables.activeItem !== 1) {
+				this.nods.items.forEach((el, index) => {
+					if (index <= this.variables.activeItem) {
+						el.classList.add(this.mods);
+					}
+				});
+			}
+		},
+
+		init() {
+			if (this.nods.wrap) {
+				this.handleResize();
+
+				this.variables.scroller
+					.setup({
+						step: '.integration__item',
+						offset: 0.5,
+						debug: false,
+					})
+					.onStepEnter((response) => {
+						this.handleStepEnter(response);
+					})
+					.onStepExit((response) => {
+						this.handleStepLeave(response);
+					});
+
+				if (window.innerWidth >= 769) {
+					this.variables.scroller.enable();
+
+					if (this.nods.wrap.getBoundingClientRect().bottom <= -1) {
+						this.nods.items.forEach((el) => {
+							el.classList.add(this.mods);
+						});
+
+						this.variables.isActivated = false;
+					}
+				} else {
+					this.variables.scroller.disable();
+				}
+
+				this.setOnResize();
+			}
+		},
+	};
+
+	ScrollSection.init();
+
+	const Select = {
+		variables: {
+			isOpened: false,
+		},
+
+		nods: {
+			select: document.querySelector('.select'),
+			input: document.querySelector('.select__input'),
+			value: document.querySelector('.select__value'),
+			optionWrap: document.querySelector('.select__options'),
+			options: document.querySelectorAll('.select__option'),
+		},
+
+		mods: {
+			opened: 'is-opened',
+			active: 'is-active',
+			filled: 'is-filled',
+		},
+
+		toggleState() {
+			this.variables.isOpened = !this.variables.isOpened;
+		},
+
+		setValue(option, value) {
+			this.nods.input.setAttribute('value', value);
+			this.nods.value.textContent = value;
+
+			if (!this.nods.select.classList.contains(this.mods.filled)) {
+				this.nods.select.classList.add(this.mods.filled);
+			}
+
+			this.setActiveOption(option);
+		},
+
+		setActiveOption(option) {
+			this.nods.options.forEach((el) => {
+				if (option === el) {
+					el.classList.add(this.mods.active);
+				} else {
+					el.classList.remove(this.mods.active);
+				}
+			});
+		},
+
+		openSelect() {
+			this.nods.select.classList.add(this.mods.opened);
+
+			gsap.to(this.nods.optionWrap, {
+				opacity: 1,
+				display: 'flex',
+				transform: 'translateY(0)',
+				duration: 0.3,
+				ease: 'linear',
+			});
+
+			this.toggleState();
+		},
+
+		closeSelect() {
+			this.nods.select.classList.remove(this.mods.opened);
+
+			gsap.to(this.nods.optionWrap, {
+				opacity: 0,
+				display: 'none',
+				transform: 'translateY(50rem)',
+				duration: 0.3,
+				ease: 'linear',
+			});
+
+			this.toggleState();
+		},
+
+		setListenerForBlock() {
+			this.nods.select.addEventListener('click', (event) => {
+				event.stopPropagation();
+
+				if (event.target && event.target.classList.contains('select__head')) {
+					if (!this.variables.isOpened) {
+						this.openSelect();
+					} else {
+						this.closeSelect();
+					}
+				} else if (event.target && event.target.classList.contains('select__option')) {
+					const value = event.target.textContent.trim();
+
+					if (!event.target.classList.contains(this.mods.active)) {
+						this.setValue(event.target, value);
+					}
+
+					this.closeSelect();
+				}
+			});
+		},
+
+		setListenerForDocument() {
+			Body.node.addEventListener('click', (event) => {
+				const path = event.composedPath && event.composedPath();
+				if (this.variables.isOpened && !path.includes(this.nods.select)) {
+					this.closeSelect();
+				}
+			});
+		},
+
+		init() {
+			if (this.nods.select) {
+				this.setListenerForBlock();
+
+				this.setListenerForDocument();
+			}
+		},
+	};
+
+	Select.init();
+
+	function isInViewport(el) {
+		var top = el.offsetTop;
+		var left = el.offsetLeft;
+		var width = el.offsetWidth;
+		var height = el.offsetHeight;
+
+		while (el.offsetParent) {
+			el = el.offsetParent;
+			top += el.offsetTop;
+			left += el.offsetLeft;
+		}
+
+		return (
+			top < window.pageYOffset + window.innerHeight &&
+			left < window.pageXOffset + window.innerWidth &&
+			top + height > window.pageYOffset &&
+			left + width > window.pageXOffset
+		);
+	}
 });

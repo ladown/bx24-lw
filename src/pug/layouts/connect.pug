@@ -76,7 +76,7 @@
 		if connectInfo.title
 			+e.H2.title.h2 !{ connectInfo.title }
 		+e.content.flex._vertical._justify
-			+e.cell._left
+			+e.cell._left.flex
 				each row in connectInfo.leftCell
 					+e.item
 						if row.caption
@@ -101,7 +101,7 @@
 				+e.IMG.lines._right(
 					src=`${imgPath}/connect/right-lines.svg`
 					alt='lines-images')
-			+e.cell._right
+			+e.cell._right.flex
 				each row in connectInfo.rightCell
 					+e.item
 						if row.caption
@@ -112,6 +112,7 @@
 									img(
 										src=`${imgPath}connect/${logo}`
 										alt=`${logo.replace('.svg', '')}-icon`)
+		+e.label И еще более 1500 других
 		+e.bg
 			img(
 				src=`${imgPath}connect/bg.svg`

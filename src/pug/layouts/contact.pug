@@ -1,3 +1,14 @@
+-
+	var selectData = {
+		nameInput: 'connection-type',
+		placeholder: 'Выберите вариант',
+		options: [
+			'Голосовой звонок по телефону',
+			'Email',
+			'Viber,Telegramm',
+		],
+	};
+
 +b.SECTION.contact
 	+e.wrap.wrap 
 		+e.header
@@ -36,13 +47,7 @@
 			+e.fields
 				+b.LABEL.label._dark.flex
 					+e.SPAN.text Предпочтительный канал связи
-					+b.SELECT.field._dark._select(name='connect')
-						option(
-							disabled
-							selected) Выберите вариант
-						option(value='Голосовой звонок по телефону	Голосовой звонок по телефону') Голосовой звонок по телефону	Голосовой звонок по телефону
-						option(value='Email') Email
-						option(value='Viber,Telegramm') Viber,Telegramm
+					+select(selectData)
 				+b.LABEL.label._dark.flex
 					+e.SPAN.text Когда удобно созвониться?
 					span.field__outer

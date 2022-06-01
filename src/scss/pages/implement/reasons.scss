@@ -178,6 +178,10 @@
 			height: 385rem;
 		}
 
+		@include to(580px) {
+			height: auto;
+		}
+
 		@include to(768px) {
 			margin: 15rem auto 0 auto;
 		}
@@ -195,6 +199,7 @@
 
 		@include to(768px) {
 			order: 2;
+			margin: 0 auto;
 		}
 
 		&-right {

@@ -179,6 +179,10 @@
 					width: 553rem;
 					height: 412rem;
 				}
+
+				@include to(580px) {
+					height: auto;
+				}
 			}
 		}
 	}

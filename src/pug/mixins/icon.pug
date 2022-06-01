@@ -1,5 +1,5 @@
 mixin icon(name, view)
-  - mod = mod || "";
-  - view = view || "";
-  svg(class=`icon icon-${name}` viewBox=view)
-    use(xlink:href=`./icons/sprite.svg#${name}`)
+	- mod = mod || '';
+	- view = view || '';
+	svg(class=`icon icon-${name}` viewBox=view)&attributes(attributes)
+		use(xlink:href=`./icons/sprite.svg#${name}`)
