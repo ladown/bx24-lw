@@ -2,7 +2,6 @@ const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
-const paths = require('./paths');
 const HookPlugin = require('./hook-plugin');
 const commonOptions = require('./webpack.common');
 
@@ -10,13 +9,6 @@ module.exports = merge(commonOptions, {
 	mode: 'production',
 
 	devtool: false,
-
-	entry: {
-		vendor: `${paths.src.vendors}/vendor.js`,
-		// vendor: ['swiper', 'scrollama', 'imask', 'jquery'],
-		common: `${paths.src.vendors}/common.js`,
-		main: ['@babel/polyfill', `${paths.src.scripts}/index.js`],
-	},
 
 	module: {
 		rules: [
@@ -55,17 +47,5 @@ module.exports = merge(commonOptions, {
 			}),
 			'...',
 		],
-		// splitChunks: {
-		// 	cacheGroups: {
-		// 		// match the entry point and spit out the file named here
-		// 		vendor: {
-		// 			chunks: 'initial',
-		// 			name: 'vendor',
-		// 			test: 'vendor',
-		// 			filename: 'vendor.js',
-		// 			enforce: true,
-		// 		},
-		// 	},
-		// },
 	},
 });

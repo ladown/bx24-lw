@@ -13,7 +13,10 @@ fs.writeFileSync(`${paths.src.pugPages}/index.pug`, generateTemplaet(), { encodi
 module.exports = {
 	target: 'web',
 
-	entry: ['@babel/polyfill', `${paths.src.scripts}/index.js`],
+	entry: {
+		pages: `${paths.src.scripts}/pug-files.js`,
+		main: ['@babel/polyfill', `${paths.src.scripts}/index.js`],
+	},
 
 	output: {
 		path: paths.build.default,
@@ -35,6 +38,10 @@ module.exports = {
 						// ignore: ['backgrounds/*.*'],
 						ignore: ['backgrounds/*.*', 'favicons/*.*'],
 					},
+				},
+				{
+					from: `${paths.src.default}/robots.txt`,
+					to: `${paths.build.default}/robots.txt`,
 				},
 			],
 		}),

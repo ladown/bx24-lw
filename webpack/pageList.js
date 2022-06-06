@@ -9,7 +9,10 @@ const generatingPageList = () => {
 	pugFiles.forEach((pageName) => {
 		if (!pageName.includes('index')) {
 			let name = `${pageName.replace('.pug', '')[0].toUpperCase() + pageName.replace('.pug', '').slice(1)} page`;
-			list += `<li><a href="/${pageName.replace('.pug', '.html')}" target="_blank"> ${name}</a></li>`;
+			list += `<li><a href="https://portfolio.ermilovee.ru/bx24-lw/${pageName.replace(
+				'.pug',
+				'.html',
+			)}" target="_blank"> ${name}</a></li>`;
 		}
 	});
 
